@@ -4,7 +4,7 @@ import './footer.css';
 export const Footer = () => {
     return (
         <footer id='footer_custom' className=" footer-container d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
-            <p className="col-md-4 mb-0 text-muted">© 2024 GSU ReviewHub</p>
+            <p className="col-md-4 mb-0 text-muted">© 2024 CourseView</p>
             <a
                 href="/"
                 className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"

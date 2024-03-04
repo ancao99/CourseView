@@ -21,7 +21,7 @@
  .app input,.app button{
     border:none;
     outline: none;
-    background: none;
+    background: white;
   }
   
  .app .cont{
@@ -29,7 +29,7 @@
     position: relative;
     width: 900px;
     height: 550px;
-    background: #fff;
+    background: white;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
   
@@ -78,26 +78,54 @@
  .app button{
     display: block;
     margin: 0 auto;
-    width: 260px;
+    width: 150px;
     height: 36px;
-    border-radius: 30px;
+    border-radius: 25px;
     color: #fff;
     font-size: 15px;
     cursor: pointer;
   }
+
   
- .app .submit{
+  .app button {
+    z-index: 1;
+    position: relative;
+    color: black;
+    padding: 8px 16px;
+    outline: none;
+    border: 1px solid #90CAF9;
+    background-color: transparent;
+    overflow: hidden;
+    transition: color 0.4s ease-in-out;
     margin-top: 40px;
     margin-bottom: 30px;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-family: 'Nunito', sans-serif;
-    background: -webkit-linear-gradient(left, #90CAF9, #b224ef);
   }
-  
- .app .submit:hover{
-    background: -webkit-linear-gradient(left, #b224ef, #90CAF9);
+
+  .app button::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    width: 35px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #90CAF9;
+    transform-origin: center;
+    transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.45s ease-in-out;
   }
+
+  .app button:hover {
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .app button:hover::before {
+    transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+  }
+
+
   
  .app .forgot-pass{
     margin-top: 15px;
@@ -109,7 +137,7 @@
   }
   
  .app .forgot-pass:hover{
-    color: red;
+    color: #90CAF9;
   }
   
   .app .sub-cont{
@@ -297,6 +325,9 @@
     position: relative;
     width: 900px;
     height: 550px;
+    border-radius: 3%;
     box-shadow: 0 19px 38px #90CAF9, 0 15px 12px #90CAF9 ; /* Change color to red */
     transition: box-shadow 0.3s ease; /* Add transition effect for smooth change */
 }
+
+
