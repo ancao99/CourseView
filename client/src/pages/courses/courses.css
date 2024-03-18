@@ -1,5 +1,5 @@
 .layout{
-    background-image: url(../../../public/cool-background.png);
+    background-image: url(images/cool-background.png);
     background-size: cover;
     background-position: center;
     transition: 1s ease;
