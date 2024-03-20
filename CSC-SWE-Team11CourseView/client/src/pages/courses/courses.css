@@ -1,0 +1,119 @@
+.layout{
+    background-image: url(../../../public/cool-background.png);
+    background-size: cover;
+    background-position: center;
+    transition: 1s ease;
+}
+
+.container{
+    padding-bottom: 30%;
+}
+
+.layout label{
+    color:white;
+}
+
+.search-bar {
+    margin-top:70px;
+    margin-bottom: 20px;
+    transition: width 0.3s ease-in-out; /* Transition for width change */
+}
+
+.search-bar label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.search-bar input {
+    border-width: 1px;
+    border-color: #90caf9;
+    border-radius: 15px;
+    padding: 5px;
+    width: 300px; /* Initial width */
+    transition: width 0.3s ease-in-out; /* Transition for width change */
+}
+
+.search-bar.focused input {
+    width: 350px; /* Width when focused */
+}
+
+#filler-intro{
+    text-align: center;
+
+}
+
+.course-list {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.course-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin:10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    transition: transform 0.5s ease;
+    width:30%;
+
+    position: relative;
+}
+
+.course-item:hover{
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+    box-shadow: 5px 5px 10px 0px #6ab8f8;
+}
+
+
+.course-item h2 {
+    margin-bottom: 5px;
+}
+  
+.course-item p {
+    margin: 0;
+}
+
+.viewFeedBackBtn{
+    position: absolute;
+    bottom:10px;  
+}
+
+.feedback-container{
+    background-color: white;
+    display:flex
+}
+
+.feedback-comment{
+    margin-bottom:15px;
+}
+.feedback-comment p{
+    margin-bottom:auto;
+}
+
+.course-info strong{
+    color:#0b56c3;
+    border: 2px solid #6ab8f8;
+    background-color: #b2e8fb;
+    border-radius: 20px;
+    padding: 5px;
+    margin-top: px;
+}
+
+.submitFeedbackBtn{
+    margin:10px;
+    background-color: green;
+}
+
+.feedback-toolbar h5{
+    margin:10px;
+    margin-bottom: 10px;
+}
+
+.feedback-questions{
+    margin:10px;
+}
