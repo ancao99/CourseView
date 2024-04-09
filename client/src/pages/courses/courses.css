@@ -109,11 +109,19 @@
     background-color: green;
 }
 
-.feedback-toolbar h5{
+.feedback-toolbar .btn-toolbar h5{
     margin:10px;
     margin-bottom: 10px;
 }
 
+.feedback-toolbar label{
+    color: #0b56c3;
+}
+
 .feedback-questions{
     margin:10px;
+}
+
+.feedback-toolbar .feedback-freeform{
+    color:black;
 }

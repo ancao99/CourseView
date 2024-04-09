@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CourseFeedbackForm({onSubmit}) {
+const CourseFeedbackForm = ({onSubmit}) => {
   const [ratings, setRatings] = useState({
     content: '',
     environment: '',
@@ -24,7 +24,7 @@ function CourseFeedbackForm({onSubmit}) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="feedback-toolbar" onSubmit={handleSubmit}>
       {/* Your rating inputs here */}
         <div className="feedback-toolbar btn-toolbar" role="toolbar" aria-label="CourseFeedback">
             <h5>The course material was relevant to the subject matter.</h5>
@@ -169,11 +169,11 @@ function CourseFeedbackForm({onSubmit}) {
         </div>
 
         
-        <label class="input-group-text" for="textArea">What additional comments or suggestions do you have about this course?</label>
+        <label class="feedback-freeform input-group-text" for="textArea">What additional comments or suggestions do you have about this course?</label>
         <textarea class="form-control" name="free_form" id="textArea" aria-label="With textarea" onChange={handleChange}></textarea>
     
         <button className="submitFeedbackBtn btn btn-primary" type="submit">Submit</button>
-        
+
     </form>
   );
 }
