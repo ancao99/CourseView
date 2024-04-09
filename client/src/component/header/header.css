@@ -42,20 +42,19 @@
 }
 
 .header-container .nav-link button:hover .image-info {
-  display: block; /* Show image info on button hover */
+  display: block; 
 }
 
 .header-container .nav-link .image-info {
-  display: none; /* Hide image info by default */
-  position: absolute; /* Position the image info */
-  top: calc(100% + 5px); /* Position it below the button */
+  display: none; 
+  position: absolute;
+  top: calc(100% + 5px); 
   left: 50%;
   transform: translateX(-50%);
   background-color: #90CAF9; 
   padding: 5px 5px 10px 5px; 
   border: 1px solid; 
-  border-radius: 10px; 
-  width: 90px;
+  border-radius: 20px; 
   text-align: center;
   font-size:18px; 
   color:black;
@@ -152,7 +151,7 @@ button and Checkbox */
     transition: color 0.4s ease-in-out;
     margin-top: 40px;
     margin-bottom: 30px;
-    border-radius: 25px;
+    border-radius: 30px;
 } 
 .feedback .close_button {
   border: none;
@@ -200,4 +199,86 @@ button and Checkbox */
 .feedback .form-control input:focus ~ span {
   width: 100%;
   border: 1px solid #90CAF9;
+}
+.app button{
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 36px;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+.app button {
+  z-index: 1;
+  position: relative;
+  color: black;
+  padding: 8px 16px;
+  outline: none;
+  border: 1px solid #90CAF9;
+  background-color: transparent;
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.feedback button::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  width: 35px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #90CAF9;
+  transform-origin: center;
+  transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
+  transition: transform 0.45s ease-in-out;
+}
+
+.feedback button:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.feedback button:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}
+/* link to profile and setting */
+
+
+.header-container .line{
+  background-color: black;
+  width: 100%px;
+  height:1px;
+  margin: 6px 0;
+}
+.header-container .account-link{
+  width: 120px;
+  
+}
+.header-container .account-link .link a,
+.header-container .account-link .link .line {
+  align-self: flex-start;
+}
+.header-container .account-link .link a {
+  display: flex;
+  align-items: center;
+  color: black; /* Adjust the color as needed */
+  text-decoration: none; /* Remove underline */
+  margin-bottom: 5px; /* Add margin between links */
+  margin-left: 6px;
+}
+.header-container .account-link .link a img {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  margin-right: 10px; /* Add space between image and text */
+}
+.header-container .account-link .link a:hover {
+  color: #0015ff; /* Change color on hover */
 }
