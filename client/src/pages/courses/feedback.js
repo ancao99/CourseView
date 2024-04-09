@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CourseFeedbackForm = ({onSubmit}) => {
+const CourseFeedbackForm = ({onSubmit, selectedCourse}) => {
   const [ratings, setRatings] = useState({
     content: '',
     environment: '',
@@ -10,6 +10,7 @@ const CourseFeedbackForm = ({onSubmit}) => {
     organization: '',
     relevance: '',
     free_form: '',
+    crn: selectedCourse
   });
 
   const handleChange = (e) => {
@@ -21,6 +22,7 @@ const CourseFeedbackForm = ({onSubmit}) => {
     e.preventDefault();
     // Call the onSubmit function and pass the ratings data
     onSubmit(ratings);
+   
   };
 
   return (
@@ -172,7 +174,7 @@ const CourseFeedbackForm = ({onSubmit}) => {
         <label class="feedback-freeform input-group-text" for="textArea">What additional comments or suggestions do you have about this course?</label>
         <textarea class="form-control" name="free_form" id="textArea" aria-label="With textarea" onChange={handleChange}></textarea>
     
-        <button className="submitFeedbackBtn btn btn-primary" type="submit">Submit</button>
+        <button className="submitFeedbackBtn btn btn-primary" type="submit" data-bs-dismiss="modal">Submit</button>
 
     </form>
   );

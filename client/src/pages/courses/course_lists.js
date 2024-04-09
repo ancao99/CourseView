@@ -96,6 +96,7 @@ const CourseList = () => {
     const handleSubmitFeedback = (ratings) => {
       // Handle submission logic here, such as sending the data to a server
       console.log('Received ratings:', ratings);
+      
     };
     
     return (

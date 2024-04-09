@@ -18,7 +18,9 @@ const courseFeedbackModal= ({ selectedCourse, handleSubmitFeedback }) =>{
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <FeedbackRating onSubmit={handleSubmitFeedback}/>
+                {selectedCourse &&(
+                    <FeedbackRating onSubmit={handleSubmitFeedback} selectedCourse={selectedCourse.crn}/>
+                )}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-target="#viewCourseFeedback" data-bs-toggle="modal">Go Back</button>
