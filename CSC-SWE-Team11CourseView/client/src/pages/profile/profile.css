@@ -1,0 +1,169 @@
+/* Import Font Dancing Script */
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+
+.profile {
+    margin: 0;
+    padding:200px 0 200px 0 ;
+
+}
+
+.profile {
+    background-color: #e8f5ff;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+/* NavbarTop */
+.profile .navbar-top {
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0px 4px 8px 0px grey;
+    height: 70px;
+}
+
+.profile .title {
+    font-family: 'Dancing Script', cursive;
+    padding-top: 15px;
+    position: absolute;
+    left: 45%;
+}
+
+.profile .navbar-top ul {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 18px 50px 0 40px;
+}
+
+.profile .navbar-top ul li {
+    float: left;
+}
+
+.profile .navbar-top ul li a {
+    color: #333;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.profile .icon-count {
+    background-color: #ff0000;
+    color: #fff;
+    float: right;
+    font-size: 11px;
+    left: -25px;
+    padding: 2px;
+    position: relative;
+}
+
+/* End */
+
+/* Sidenav */
+.profile .sidenav {
+    color: #333;
+    border-bottom-right-radius: 25px;
+    height: 86%;
+    left: 12%;
+    overflow-x: hidden;
+    padding-top: 50px;
+    position: absolute;
+    top: 150px;
+    width: 200px;
+    padding-left: 90px;
+}
+
+.profile {
+    margin-bottom: 20px;
+    margin-top: -12px;
+    text-align: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px grey;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.profile button {
+    z-index: 1;
+    position: relative;
+    color: black;
+    border-radius: 30px;
+    padding: 10px 16px;
+    outline: none;
+    border: 1px solid #90CAF9;
+    background-color: transparent;
+    overflow: hidden;
+    transition: color 0.4s ease-in-out;
+  }
+
+ .profile button::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #90CAF9;
+    transform-origin: center;
+    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.45s ease-in-out;
+  }
+
+ .profile button:hover {
+    cursor: pointer;
+    color: black;
+  }
+
+ .profile button:hover::before {
+    transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+  }
+
+/* End */
+
+/* Main */
+.main {
+    margin-top: 2%;
+    margin-left: 30%;
+    font-size: 28px;
+    padding: 0 10px;
+    width: 58%;
+    
+}
+
+.main h2 {
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.main .card {
+    background-color: #fff;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 50px;
+}
+
+.main .card table {
+    border: none;
+    font-size: 16px;
+    height: 270px;
+    width: 80%;
+}
+
+.edit {
+    position: absolute;
+    color: #e7e7e8;
+    right: 14%;
+}
