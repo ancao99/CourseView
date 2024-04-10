@@ -3,6 +3,9 @@
     font-family: 'Roboto', sans-serif;
 
 }
+.about-us{
+    background-color: #e8f5ff;
+}
 .about {
     display: flex;
     justify-content: center;
@@ -29,4 +32,5 @@
 
 .image{
     max-width: 100%;
+    
 }

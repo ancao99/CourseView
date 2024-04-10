@@ -4,7 +4,7 @@ import "./about-us.css";
 // AboutUs component showcases our web development journey
 export const AboutUs = () => {
   return (
-    <>
+
     <div className='about-us'>
       {/* Main title */}
       <h1 className="about">About Our CourseView Website</h1>
@@ -46,6 +46,5 @@ export const AboutUs = () => {
            <br/> Thank you for choosing Course Review Web. Together, let's make academic excellence accessible to all!</p>
       </div>
     </div>
-    </>
   );
 };
