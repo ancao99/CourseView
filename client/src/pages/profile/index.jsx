@@ -43,9 +43,7 @@ export const Profile = () => {
   const handleEditClick = () => {
     setIsEditing(true);
   };
-  const handleDoneClick = () => {
-    setIsEditing(false);
-  };
+
   const deleteUser  = async (event, userID) => {
     event.preventDefault();
     try {
@@ -74,7 +72,6 @@ const handleLogOut = async () => {
       Cookies.remove("isAdmin");
       Cookies.remove("access_token");
     }
-    alert("Log Out success.");
     navigate('/login');
 
   }
@@ -83,13 +80,36 @@ const handleLogOut = async () => {
     alert("Log Out got Error.")
   }
 };
-  
+  const updateUserProfile = async () => {
+    try {
+      const data = {
+        userID: Cookies.get("userID"),
+        fullName: userFullName,
+        email: userEmail,
+        phone: userPhone,
+        department: userDepartment,
+        major: userMajor,
+        minor: userMinor,
+        school: userSchool
+      };
+      console.log(data);
+      await ClientAPI.post("updateUser", data); // Change this to your API endpoint
+      setIsEditing(false); // Exit edit mode
+    } catch (error) {
+      console.error("Error updating user's data:", error);
+      // Handle error appropriately
+    }
+  };
+  const handleDoneClick = () => {
+    updateUserProfile(); // Call the function to update user profile
+    setIsEditing(false);
+  };
 
   return (
     <div className='container'>
       <div className="wrapper">
         <div className="left">
-          <img src="https://i.imgur.com/cMy8V5j.png" alt="user" width={100} />
+          <img src="picture.png" alt="user" width={100} />
           <h3>{userFullName}</h3>
           <div className='profile-button'>
             <button className='edit' onClick={handleEditClick}>Edit Profile</button>

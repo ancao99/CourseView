@@ -29,59 +29,24 @@ export default class Profile {
     static async updateUser(inputData, res) {
         try {
             console.log('Received data:', inputData); // Log received data
-            const { userID, email, phone, department, school, major, minor } = inputData;
-            if (!userID) {
-                throw new Error("User ID is missing or undefined.");
+            const { userID, fullName,email,phone,department,major,minor,school} = inputData;
+            if (!userID || !fullName || !email || !department || !major || !school || !minor || !phone) {
+                throw new Error("Information is missing or undefined.");
             }
 
-            let updateFields = [];
-            let updateValues = [];
-
-            if (email) {
-                updateFields.push('email = ?');
-                updateValues.push(email);
-            }
-            if (department) {
-                updateFields.push('department = ?');
-                updateValues.push(department);
-            }
-            if (major) {
-                updateFields.push('major = ?');
-                updateValues.push(major);
-            }
-            if (school) {
-                updateFields.push('school = ?');
-                updateValues.push(school);
-            }
-            if (minor) {
-                updateFields.push('minor = ?');
-                updateValues.push(minor);
-            }
-            if (phone) {
-                updateFields.push('phone = ?');
-                updateValues.push(phone);
-            }
-
-            if (updateFields.length === 0) {
-                throw new Error("No fields provided to update.");
-            }
-
-            // Construct the SQL query to update user details
-            const updateQuery = `UPDATE user SET ${updateFields.join(', ')} WHERE userID = ?`;
-            updateValues.push(userID);
-
-            // Execute SQL query to update user details
-            db.execute(updateQuery, updateValues, (err, data) => {
+            // Execute SQL query to update the term
+            const updateQuery = `UPDATE user SET  fullName = ?, email = ?,department = ?,major = ?,school = ?,minor = ?,phone = ? WHERE userID = ?`;
+            db.execute(updateQuery, [fullName, email, department, major, school, minor, phone, userID], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
                 }
-                return res.status(200).json("User details updated successfully.");
+                return res.status(200).json("User updated successfully.");
             });
         }
         catch (error) {
-            console.error("Error updating user details:", error);
-            return res.status(500).json("Failed to update user details. " + error);
+            console.error("Error updating user:", error);
+            return res.status(500).json("Failed to update user. " + error);
         }
     }
 
