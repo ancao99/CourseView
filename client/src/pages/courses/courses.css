@@ -109,6 +109,11 @@
     background-color: green;
 }
 
+.resetFeedbakBtn{
+    margin:10px;
+    background-color: red;
+}
+
 .feedback-toolbar .btn-toolbar h5{
     margin:10px;
     margin-bottom: 10px;

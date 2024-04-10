@@ -19,7 +19,7 @@ const courseFeedbackModal= ({ selectedCourse, handleSubmitFeedback }) =>{
               </div>
               <div class="modal-body">
                 {selectedCourse &&(
-                    <FeedbackRating onSubmit={handleSubmitFeedback} selectedCourse={selectedCourse.crn}/>
+                    <FeedbackRating onSubmit={handleSubmitFeedback} selectedCourse={selectedCourse}/>
                 )}
               </div>
               <div class="modal-footer">
