@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
+import { useMemo } from 'react';
 
 import FeedbackRating from './feedback';
 import SearchBar from './search';
@@ -29,10 +29,20 @@ const CourseList = () => {
         }
       }, [searchQuery]);
 
+    /*
+    // Memoize the filtering function
+    const filterCourses = memoize((query, courses) => {
+      return courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
+        title.toLowerCase().includes(query.toLowerCase()) ||
+        courseNumber.toString().includes(query) || crn.toString().includes(query) || professor.toLowerCase().includes(query.toLowerCase())
+      );
+    });
+    */
+   /*
     //Handles User input from search bar
     const handleSearch = (query) => {
         setSearchQuery(query);
-        
+        /*
         const filtered = courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
           title.toLowerCase().includes(query.toLowerCase()) ||
           courseNumber.toString().includes(query) || crn.toString().includes(query) || professor.toLowerCase().includes(query.toLowerCase())
@@ -43,9 +53,30 @@ const CourseList = () => {
           title.toLowerCase().includes(query.toLowerCase()) ||
           courseNumber.toString().includes(query) 
         );
-        */
+        
+        const filtered = filterCourses(query, courses);
         setFilteredCourses(filtered);
-      };
+    };
+    */
+
+    const filterCourses = (query, courses) => {
+      return courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
+        title.toLowerCase().includes(query.toLowerCase()) ||
+        courseNumber.toString().includes(query) || 
+        crn.toString().includes(query) || 
+        professor.toLowerCase().includes(query.toLowerCase())
+      );
+    };
+  
+    // Memoize the filteredCourses value
+    const memoizedFilteredCourses = useMemo(() => {
+      return filterCourses(searchQuery, courses);
+    }, [searchQuery]);
+  
+    const handleSearch = (query) => {
+      setSearchQuery(query);
+      setFilteredCourses(memoizedFilteredCourses);
+    };
 
     //Send data from a course to the modal/pop up box
     const handleOpenModal = (course) => {
