@@ -171,7 +171,7 @@ export const CourseData = [
     [80113, "CSC", 4999, 78, "1 TO 4", "DIRECTED READINGS Directed Study (one-to-one)", "Angryk, Rafal A. (Primary)", "Directed Study (one-to-one)"],
     [90130, "CSC", 4999, 80, "1 TO 4", "DIRECTED READINGS Directed Study (one-to-one)", "Wang, Peng (Primary)", "Directed Study (one-to-one)"],
 
-    /*
+    
     [86602, "ACCT", 2101, 2, 3, "PRIN OF ACCT I Large Classroom/Lecture", "Lanier, Danny . (Primary)", "Large Classroom/Lecture"],
     [84508, "ACCT", 2101, 4, 3, "PRIN OF ACCT I Large Classroom/Lecture", "Pierce, Andrew . (Primary)", "Large Classroom/Lecture"],
     [80991, "ACCT", 2101, 6, 3, "PRIN OF ACCT I Large Classroom/Lecture", "Gingras, J.P. Gingras . (Primary)", "Large Classroom/Lecture"],
@@ -1384,24 +1384,6 @@ export const CourseData = [
     [91992, "BMSC", 4971, 2, 3, "T: REC OUTBREAKS W/POT SPREAD Lecture", "Garg, Pallavi (Primary)", "Lecture"],
     [88253, "BMSC", 4980, 2, 3, "SIG EXP: INTERNSHIP Internship/Practicum", "Alcala, Adani P. (Primary)", "Internship/Practicum"],
     [88254, "BMSC", 4990, 2, 3, "SIG EXP: INDEPENDENT RESEARCH Independent Study (Correspond)", "Alcala, Adani P. (Primary)", "Independent Study (Correspond)"],
-
-    [87425, "BMSC", 2100, 4, 2, "HON CAREERS IN BIOMED SCIENCE Lecture", "Saylor, Zachary J. (Primary)", "Lecture"],
-    [88259, "BMSC", 2100, 6, 2, "CAREERS IN BIOMEDICAL SCIENCE Lecture", "Saylor, Zachary J. (Primary)", "Lecture"],
-    [91989, "BMSC", 3701, 2, 3, "GLOB. REG. & LEG. RQ. OF QUAL. Lecture", "Bell, Antoinette . (Primary)", "Lecture"],
-    [90274, "BMSC", 4100, 2, 3, "EXP. APPR. TO BIOMED RESEARCH Lecture", "Saylor, Zachary J. (Primary)", "Lecture"],
-    [90231, "BMSC", 4100, 4, 3, "EXP. APPR. TO BIOMED RESEARCH Lecture", "Kurasz, Jennifer E. (Primary)", "Lecture"],
-    [90348, "BMSC", 4100, 6, 3, "HON EXP. APPR. TO BIOMED RSRCH Lecture", "Kurasz, Jennifer E. (Primary)", "Lecture"],
-    [90271, "BMSC", 4110, 2, 3, "EX. AP. BIOMED RES: PRACTICUM Supervised Laboratory", "Kurasz, Jennifer E. (Primary)", "Supervised Laboratory"],
-    [91990, "BMSC", 4200, 2, 4, "TRANSLATIONAL IMMUNOLOGY Lecture", "Bell, Antoinette . (Primary)", "Lecture"],
-    [88261, "BMSC", 4200, 4, 4, "TRANSLATIONAL IMMUNOLOGY Lecture", "Alcala, Adani P. (Primary)", "Lecture"],
-    [88262, "BMSC", 4200, 6, 4, "HON TRANSLATIONAL IMMUNOLOGY Lecture", "Alcala, Adani P. (Primary)", "Lecture"],
-    [86586, "BMSC", 4310, 4, 3, "SCIENTIFIC COMM. - CTW Lecture", "Kurasz, Jennifer E. (Primary)", "Lecture"],
-    [87428, "BMSC", 4310, 6, 3, "HON SCIENTIFIC COMM. - CTW Lecture", "Kurasz, Jennifer E. (Primary)", "Lecture"],
-    [93311, "BMSC", 4870, 2, 3, "HONORS THESIS: RESEARCH Independent Study (Correspond)", "Saylor, Zachary J. (Primary)", "Independent Study (Correspond)"],
-    [88255, "BMSC", 4970, 2, 3, "T: REC OUTBREAKS W/POT SPREAD Lecture", "Garg, Pallavi (Primary)", "Lecture"],
-    [91992, "BMSC", 4971, 2, 3, "T: REC OUTBREAKS W/POT SPREAD Lecture", "Garg, Pallavi (Primary)", "Lecture"],
-    [88253, "BMSC", 4980, 2, 3, "SIG EXP: INTERNSHIP Internship/Practicum", "Alcala, Adani P. (Primary)", "Internship/Practicum"],
-    [88254, "BMSC", 4990, 2, 3, "SIG EXP: INDEPENDENT RESEARCH Independent Study (Correspond)", "Alcala, Adani P. (Primary)", "Independent Study (Correspond)"],
     [83441, "BRFV", 3200, 2, 3, "INTRO ADM/ORGAN PROGS YNG CHLD Lecture", "French-Lee, Stacey Y. (Primary)", "Lecture"],
     [85192, "BRFV", 4360, 2, 3, "CHILD GUIDANCE BIRTH TO FIVE Lecture", "Durden, Tonia R. (Primary)", "Lecture"],
     [85765, "BRFV", 4370, 2, 3, "LANG/LITERACY/COGNITION-CTW Lecture", "King, Yemimah A. (Primary)", "Lecture"],
@@ -2156,6 +2138,6 @@ export const CourseData = [
     [87943,"EXC",4925,2,3,"PRACTICUM I: ADAPTED CURRICULM Internship/Practicum","Boden, Lauren J. (Primary)","Internship/Practicum"],
     [90218,"EXC",4935,2,'1 TO 12',"STUDENT TEACHING: ADAPTED CURR Practice Teaching","Boden, Lauren J. (Primary)","Practice Teaching"]
     
-    */
+    
 
 ];

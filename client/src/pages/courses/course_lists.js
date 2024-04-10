@@ -32,18 +32,18 @@ const CourseList = () => {
     //Handles User input from search bar
     const handleSearch = (query) => {
         setSearchQuery(query);
-        /*
+        
         const filtered = courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
           title.toLowerCase().includes(query.toLowerCase()) ||
           courseNumber.toString().includes(query) || crn.toString().includes(query) || professor.toLowerCase().includes(query.toLowerCase())
         );
-        */
-       
+        
+        /*
         const filtered = courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
           title.toLowerCase().includes(query.toLowerCase()) ||
           courseNumber.toString().includes(query) 
         );
-
+        */
         setFilteredCourses(filtered);
       };
 
