@@ -5,6 +5,12 @@ import Cookies from 'js-cookie';
 import ClientAPI from '../../api/clientAPI';
 
 export function Header() {
+  //drop down function
+  const [showDropdown, setShowDropdown] = useState(false);
+    const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+  // feedback function 
   const navigate = useNavigate();
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const feedbackFormRef = useRef(null);
@@ -26,7 +32,15 @@ export function Header() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showFeedbackForm]);
+  
+  const handleFeedBackButtonClick = () => {
+    setShowFeedbackForm(true);
+  };
 
+  const handleCloseFeedbackForm = () => {
+    setShowFeedbackForm(false);
+  };
+// route page
   const handleLoginButtonClick = () => {
     navigate('/login');
   };
@@ -42,13 +56,24 @@ export function Header() {
   const handleCourseButtonClick = () => {
     navigate('/courses');
   };
-
-  const handleFeedBackButtonClick = () => {
-    setShowFeedbackForm(true);
-  };
-
-  const handleCloseFeedbackForm = () => {
-    setShowFeedbackForm(false);
+//logout function 
+  const handleLogOut = async () => {
+    try {
+      const data = { nothing: "nothing" };
+      const respond = await ClientAPI.post("logout", data);
+      //console.log("From HeaderLogOut.jsx: ", respond.data);
+      if (respond.data === "Log out") {
+        Cookies.remove("userID");
+        Cookies.remove("isAdmin");
+        Cookies.remove("access_token");
+      }
+      alert("Log Out success.")
+      navigate("/");
+    }
+    catch (err) {
+      //console.log("From HeaderLogOut.jsx: ", err);
+      alert("Log Out got Error.")
+    }
   };
 
   const handleLogOut = async () => {
@@ -77,17 +102,29 @@ export function Header() {
       </div>
       <div className="right-section">
         <div className="nav-link">
-          <button onClick={handleHomeButtonClick}><img src="home.png" style={{ width: '50px', height: '50px' }} alt="Home"></img><div className='image-info'>Home</div></button>
+          <button onClick={handleHomeButtonClick}><img src="home.png" style={{ width: '50px', height: '50px' }} alt="Home"></img><div className='image-info'>&#160;Home&#160;</div></button>
+        </div>
+        <div className="nav-link">
+          <button onClick={handleAboutButtonClick}><img src="about.png" style={{ width: '50px', height: '50px' }} alt="About"></img><div className='image-info'>&#160;About&#160;</div></button>
+        </div>
+        <div className='nav-link'>
+          <button onClick={handleCourseButtonClick}><img src="search.png" style={{ width: '50px', height: '50px' }} alt="place holder course"></img><div className='image-info'>&#160;Courses&#160;</div></button>
         </div>
 
+<<<<<<< HEAD
         <div className='nav-link'>
           <button onClick={handleCourseButtonClick}><img src="search.png" style={{ width: '50px', height: '50px' }} alt="place holder course"></img><div className='image-info'>Courses</div></button>
         </div>
 
+=======
+        
+        {Cookies.get("userID") && (
+>>>>>>> an_s_main
         <div className="nav-link">
-          <button onClick={handleAboutButtonClick}><img src="about.png" style={{ width: '50px', height: '50px' }} alt="About"></img><div className='image-info'>About</div></button>
-        </div>
+          <button onClick={handleFeedBackButtonClick}><img src="feedback.png" style={{ width: '50px', height: '50px' }} alt="Feedback"></img><div className='image-info'>&#160;FeedBack&#160;</div></button>
+        </div>)}
         <div className="nav-link">
+<<<<<<< HEAD
           <button onClick={handleFeedBackButtonClick}><img src="feedback.png" style={{ width: '50px', height: '50px' }} alt="Feedback"></img><div className='image-info'>FeedBack</div></button>
         </div>
         <div className="nav-link">
@@ -98,6 +135,35 @@ export function Header() {
             <button onClick={handleLogOut}><img src="logout.png" style={{ width: '50px', height: '50px' }} alt="Logout"></img><div className='image-info'>Logout</div></button>
           </div>
         )}
+=======
+          <button onClick={handleLoginButtonClick}><img src="login_icon.png" style={{ width: '50px', height: '50px' }} alt="Login"></img>
+          {Cookies.get("userID") === undefined ? (
+          <div className='image-info'>&#160;Account&#160;</div>
+          ):(
+          <div className="image-info account-link">
+            <div className='link'>
+              {(Cookies.get("isAdmin") !== undefined && Cookies.get("isAdmin") === '1')? (
+                  <a href="/adminDashboard">
+                    {/* <img src="dashboard.png" style={{ width: '20px', height: '20px' }} alt="Dashboard"></img> */}
+                    &#160;Dashboard
+                  </a>
+                ):(<a href="/profile">
+                <img src="login_icon.png" style={{ width: '20px', height: '20px' }} alt="Profile"></img>
+                Profile</a>)}
+              <div className='line'></div>
+              <a href="#">
+                <img src="setting.png" style={{ width: '20px', height: '20px' }} alt="Setting"></img>
+                Setting</a>
+              <div className='line'></div>
+              <a onClick={handleLogOut} href="#">
+                <img src="logout.png" style={{ width: '20px', height: '20px' }} alt="Logout"></img>
+                Log Out </a>
+            </div>
+          </div>
+          )}
+          </button>
+        </div>
+>>>>>>> an_s_main
 
       </div>
       {showFeedbackForm && (

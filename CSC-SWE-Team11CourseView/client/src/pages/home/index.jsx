@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './home.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { Carousel } from "../../component/carousel/";
+// import { Carousel } from "../../component/carousel/";
+import Cookies from "js-cookie";
+import ClientAPI from "../../api/clientAPI";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -20,7 +22,11 @@ export const Home = () => {
                 <div className='welcome'>
                     <h1 className='brand-name'><strong>CourseView</strong></h1>
                     <button onClick={handleCourseButtonClick} type="button" className="btn btn-primary float-end" >
+<<<<<<< HEAD
                         Click here to explore The Course
+=======
+                    &#160;Click here to explore ... &#160;
+>>>>>>> an_s_main
                     </button>
                 </div>
 
@@ -66,6 +72,7 @@ export const Home = () => {
                             </div>
                         </div>
                     </div>
+                    {Cookies.get("userID") === undefined && (
                     <button
                         onClick={handleLoginButtonClick}
                         role="button"
@@ -73,10 +80,10 @@ export const Home = () => {
                         className="ModalButtonLink__StyledButton-sc-1soj3zs-0 khahiz"
                         type="button"
                     >
+                        
                         <span>Sign up now!</span>
                         <div />
-
-                    </button>
+                    </button>)}
                 </div>
 
 
