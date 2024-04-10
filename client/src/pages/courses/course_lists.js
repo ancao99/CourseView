@@ -3,6 +3,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+
 import FeedbackRating from './feedback';
 import SearchBar from './search';
 import CourseModal from './courseModal';
@@ -10,7 +11,7 @@ import CourseFeedbackModal from './courseFeedbackModal';
 import {CourseData} from './courses_array';
 import './courses.css';
 
-
+//Left off at executive mba
 const courses = CourseData;
 
 const CourseList = () => {
@@ -31,10 +32,18 @@ const CourseList = () => {
     //Handles User input from search bar
     const handleSearch = (query) => {
         setSearchQuery(query);
+        /*
         const filtered = courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
           title.toLowerCase().includes(query.toLowerCase()) ||
           courseNumber.toString().includes(query) || crn.toString().includes(query) || professor.toLowerCase().includes(query.toLowerCase())
         );
+        */
+       
+        const filtered = courses.filter(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) =>
+          title.toLowerCase().includes(query.toLowerCase()) ||
+          courseNumber.toString().includes(query) 
+        );
+
         setFilteredCourses(filtered);
       };
 
