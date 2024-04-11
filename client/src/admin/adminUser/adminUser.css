@@ -36,3 +36,31 @@
     font-family: Poppins;
     box-sizing: border-box
 }
+.adminPage .updateProduct {
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    width: 1000px;
+}
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-gap: 20px; /* Gap between grid items */
+}
+
+.form-group {
+    display: grid;
+    align-items: center; /* Align items vertically */
+}
+
+.button-group {
+    grid-column: span 2; /* Make the buttons span two columns */
+    text-align: left;
+}
+
+.adminPage .button{
+    margin-right:50px;
+}
