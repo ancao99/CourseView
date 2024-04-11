@@ -11,8 +11,23 @@ import CourseFeedbackModal from './courseFeedbackModal';
 import {CourseData} from './courses_array';
 import './courses.css';
 
+//This function returns data from the database(course table)
+const loadCourses = () =>{
+  //1 There should be a var that takes in data from database(course table)
+  //2 The data should be from a return call from a function that returns course table data
+  //3 If that data is already in the form of an array/list whose indexes are array/list then leave it alone. ex: [[],[],...]
+  //4 Else use some loop or function that formats them as such here or in the function referred to in comment 2
+
+
+  //Edit this so that it returns course data from course table
+  //Currently CourseData is filler array from course_array.js
+  return CourseData;
+}
+
+
+//Contains courses from A - E
 //Left off at executive mba
-const courses = CourseData;
+const courses = loadCourses();
 
 const CourseList = () => {
     const [searchQuery, setSearchQuery] = useState('');
