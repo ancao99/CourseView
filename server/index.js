@@ -9,6 +9,8 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from "path";
 import Authentication from "./behavior/authentication.js";
+import Profile from "./behavior/profile.js";
+
 // Server port
 var app = express()
 const port = 3000
@@ -74,7 +76,15 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
         case "getUserFullName":
             Authentication.getUserFullName(data, res);
             break;
-        
+
+        //profile
+        case "updateUser":
+            Profile.updateUser(data.entry, res);
+            break;
+        case "deleteUser":
+            Profile.deleteUser(data.entry, res);
+            break;
+
         default:        
             res.status(400).json("Bad Request");
             break;

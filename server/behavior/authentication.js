@@ -88,14 +88,12 @@ export default class Authentication {
     }
     static getUserFullName(data, res) {
         let userID = data.userID; // Assuming you're passing userID in the request body
-        db.execute(`SELECT fullName,email FROM user WHERE userID = ${userID}`, (err, data) => {
+        db.execute(`SELECT fullName,email,department,major,school,minor,phone FROM user WHERE userID = ${userID}`, (err, data) => {
             if (err) return res.json(err);
             if (data.length === 0) return res.status(404).json("User not found");
-    
-            const {fullName,email} = data[0];
-            return res.status(200).json({ fullName,email });
+            const {fullName,email,department,major,school,minor,phone } = data[0];
+            return res.status(200).json({ fullName,email,department,major,school,minor,phone });
         });
     }
-
 
 }

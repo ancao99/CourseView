@@ -1,46 +1,27 @@
 import { db } from "../db.js"
 import MySecurity from "./myServerSecurity.js";
 
-export default class profile  {
+export default class Profile {
 
-    static async getProfile(key, inputD, res) {
-        try {
-            db.execute(`SELECT user.* FROM user`, (err, data) => {
-                if (err) return res.status(500).json(err);
-    
-                const user = data.map(user=> ({
-                    userID: user.userID,
-                    userFullName: user.fullName, 
-                    pass: user.password,
-                }));
-    
-                const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), user);
-                return res.status(200).json(encryptedData);
-            });
-        }
-        catch (error) {
-            return res.status(500).json("Failed to get comment. " + error);
-        }
-    }
-    
-    static deleteUser(inputD, res) {
+    static async deleteUser(inputD, res) {
         try {
             const { userID } = inputD;
             if (!userID) {
                 throw new Error("User ID is missing or undefined.");
             }
-            const deleteQuery = `DELETE FROM user WHERE userID = ?`;
-            db.execute(deleteQuery, [userID], (err, data) => {
-                if (err) {
-                    console.error("Error executing SQL query:", err);
-                    return res.status(500).json(err);
-                }
-                return res.status(200).json("User Deleted Successfully.");
-            });
-        }
-        catch (error) {
+
+            // Optional: Delete user token (if userToken table exists)
+            const deleteTokenQuery = `DELETE FROM userToken WHERE userID = ?`;
+            await db.execute(deleteTokenQuery, [userID]);
+
+
+            const deleteUserQuery = `DELETE FROM user WHERE userID = ?`;
+            await db.execute(deleteUserQuery, [userID]);
+
+            return res.status(200).json("User Deleted Successfully.");
+        } catch (error) {
             console.error("Error deleting user:", error);
-            return res.status(500).json("Failed to delete uer. " + error);
+            return res.status(500).json("Failed to delete user. " + error);
         }
     }
 
@@ -48,23 +29,25 @@ export default class profile  {
     static async updateUser(inputData, res) {
         try {
             console.log('Received data:', inputData); // Log received data
-            const { userID} = inputData;
-            if (!userID) {
-                throw new Error("User ID is missing or undefined.");
+            const { userID, fullName,email,phone,department,major,minor,school} = inputData;
+            if (!userID || !fullName || !email || !department || !major || !school || !minor || !phone) {
+                throw new Error("Information is missing or undefined.");
             }
-            // Execute SQL query to update the comment
-            const updateQuery = `UPDATE user SET password = ? WHERE userID = ?`;
-            db.execute(updateQuery, [userID], (err, data) => {
+
+            // Execute SQL query to update the term
+            const updateQuery = `UPDATE user SET  fullName = ?, email = ?,department = ?,major = ?,school = ?,minor = ?,phone = ? WHERE userID = ?`;
+            db.execute(updateQuery, [fullName, email, department, major, school, minor, phone, userID], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
                 }
-                return res.status(200).json("Review updated successfully.");
+                return res.status(200).json("User updated successfully.");
             });
         }
         catch (error) {
-            console.error("Error updating review:", error);
-            return res.status(500).json("Failed to update review. " + error);
+            console.error("Error updating user:", error);
+            return res.status(500).json("Failed to update user. " + error);
         }
-    }    
+    }
+
 }

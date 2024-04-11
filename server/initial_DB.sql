@@ -9,6 +9,15 @@ CREATE TABLE `user`
   `isAdmin` INT,
   PRIMARY KEY (`userID`)
 );
+ALTER TABLE `user`(
+  ADD phone VARCHAR(20) DEFAULT 'N/A',
+  ADD department VARCHAR(50) DEFAULT 'your department',
+  ADD minor VARCHAR(50) DEFAULT 'minor',
+  ADD school VARCHAR(50) DEFAULT 'school year',
+  ADD major VARCHAR(50) DEFAULT 'major',
+);
+
+
 
 
 CREATE TABLE `userToken`

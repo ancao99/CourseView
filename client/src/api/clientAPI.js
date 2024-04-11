@@ -9,8 +9,10 @@ export default class ClientAPI{
             case "login":                
             case "register":               
             case "logout":
-                case "getUserFullName":
+            case "getUserFullName":
 
+            case "updateUser":
+            case "deleteUser":
             /* product
             case "getProduct":                
             case "getProductDetail": 
