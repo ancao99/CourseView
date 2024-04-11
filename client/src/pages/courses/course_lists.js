@@ -19,7 +19,7 @@ const loadCourses = () =>{
   //4 Else use some loop or function that formats them as such here or in the function referred to in comment 2
 
 
-  //Edit this so that it returns course data from course table
+  //Edit the return so that it returns var with data from course table
   //Currently CourseData is filler array from course_array.js
   return CourseData;
 }

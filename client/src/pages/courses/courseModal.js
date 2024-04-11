@@ -17,14 +17,17 @@ const CourseModal = ({selectedCourse }) =>{
   //add function to get avg feedback table / array
   //for now it does nothing
   const getFeedback = (crn) => {
-
+    //Var that loads in avg feedback table from database from a return call of a function
+    //If the data in Var is not already formatted in the same way as ratings then format it
+    //return that var
   };
 
   //add function to create appropriate values for Rating values
   //for now it does nothing
   const assignValue = (feedbackData) => {
-    
-    
+    //In the format of ratings, assign feedbackData to an array
+    //If feedbackData is not already formatted in the same way as ratings then format it
+    //return the array
   };
 
   // Update ratings when selected course changes
