@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 
-function CourseFeedbackForm({onSubmit}) {
+const CourseFeedbackForm = ({onSubmit, selectedCourse}) => {
   const [ratings, setRatings] = useState({
     content: '',
     environment: '',
@@ -12,19 +12,92 @@ function CourseFeedbackForm({onSubmit}) {
     free_form: '',
   });
 
+  const initialRatings = {
+    content: '',
+    environment: '',
+    assignments: '',
+    interaction: '',
+    feedback: '',
+    organization: '',
+    relevance: '',
+    free_form: '',
+  };
+
+  const [showWarning, setShowWarning] = useState(false); 
+
+  // Function to check if all radio inputs are checked
+  const allRadioChecked = () => {
+    const radioGroups = [
+      'content',
+      'environment',
+      'assignments',
+      'interaction',
+      'feedback',
+      'organization',
+      'relevance'
+    ];
+
+    return radioGroups.every(group => {
+      const checkedRadio = document.querySelector(`input[name="${group}"]:checked`);
+      return checkedRadio !== null;
+    });
+  };
+
+  const handleReset = () => {
+    // Reset form values
+    setRatings(initialRatings);
+
+    //Reset form fields
+    const form = document.getElementById('form_user');
+    const inputs = form.querySelectorAll('input[type="radio"]');
+    inputs.forEach(input => {
+        input.checked = false;
+    });
+    form.querySelector('textarea').value = '';
+    
+
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRatings({ ...ratings, [name]: value });
+
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call the onSubmit function and pass the ratings data
-    onSubmit(ratings);
+
+    // Check if all radio inputs are checked (validation)
+    if (!allRadioChecked()) {
+      // Display an error message or perform any other action to indicate that all ratings must be selected
+      //alert('Please select ratings for all categories.');
+      setShowWarning(true);
+    }else{
+      const feedback = [selectedCourse.crn, ratings]
+
+      // Call the onSubmit function and pass the ratings data and crn number
+      onSubmit(feedback);
+
+      // Reset form values
+      setRatings(initialRatings);
+
+      //Reset form fields
+      const form = document.getElementById('form_user');
+      const inputs = form.querySelectorAll('input[type="radio"]');
+      inputs.forEach(input => {
+          input.checked = false;
+      });
+      form.querySelector('textarea').value = '';
+      setShowWarning(false);
+      
+    }
+
+    
+    
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="feedback-toolbar"  id="form_user" onSubmit={handleSubmit}>
       {/* Your rating inputs here */}
         <div className="feedback-toolbar btn-toolbar" role="toolbar" aria-label="CourseFeedback">
             <h5>The course material was relevant to the subject matter.</h5>
@@ -34,7 +107,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="content" id="btnradio1" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio1">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="content" id="btnradio2" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="content" id="btnradio2" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio2">Disagree</label>
     
                 <input type="radio" class="btn-check" name="content" id="btnradio3" autocomplete="off" value="neutral" onChange={handleChange}></input>
@@ -54,7 +127,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="environment" id="btnradio6" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio6">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="environment" id="btnradio7" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="environment" id="btnradio7" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio7">Disagree</label>
     
                 <input type="radio" class="btn-check" name="environment" id="btnradio8" autocomplete="off" value="neutral" onChange={handleChange}></input>
@@ -74,7 +147,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="assignments" id="btnradio11" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio11">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="assignments" id="btnradio12" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="assignments" id="btnradio12" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio12">Disagree</label>
     
                 <input type="radio" class="btn-check" name="assignments" id="btnradio13" autocomplete="off" value="neutral" onChange={handleChange}></input>
@@ -94,7 +167,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="interaction" id="btnradio16" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio16">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="interaction" id="btnradio17" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="interaction" id="btnradio17" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio17">Disagree</label>
     
                 <input type="radio" class="btn-check" name="interaction" id="btnradio18" autocomplete="off" value="neutral" onChange={handleChange}></input>
@@ -114,7 +187,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="feedback" id="btnradio21" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio21">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="feedback" id="btnradio22" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="feedback" id="btnradio22" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio22">Disagree</label>
     
                 <input type="radio" class="btn-check" name="feedback" id="btnradio23" autocomplete="off" value="neutral" onChange={handleChange}></input>
@@ -134,7 +207,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="organization" id="btnradio26" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio26">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="organization" id="btnradio27" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="organization" id="btnradio27" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio27">Disagree</label>
     
                 <input type="radio" class="btn-check" name="organization" id="btnradio28" autocomplete="off" value="neutral" onChange={handleChange} ></input>
@@ -154,7 +227,7 @@ function CourseFeedbackForm({onSubmit}) {
                 <input type="radio" class="btn-check" name="relevance" id="btnradio31" autocomplete="off" value="strongly disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio31">Strongly Disagree</label>
     
-                <input type="radio" class="btn-check" name="relevance" id="btnradio32" autocomplete="off" value="agree" onChange={handleChange}></input>
+                <input type="radio" class="btn-check" name="relevance" id="btnradio32" autocomplete="off" value="disagree" onChange={handleChange}></input>
                 <label class="btn btn-outline-primary" for="btnradio32">Disagree</label>
     
                 <input type="radio" class="btn-check" name="relevance" id="btnradio33" autocomplete="off" value="neutral" onChange={handleChange}></input>
@@ -169,11 +242,13 @@ function CourseFeedbackForm({onSubmit}) {
         </div>
 
         
-        <label class="input-group-text" for="textArea">What additional comments or suggestions do you have about this course?</label>
+        <label class="feedback-freeform input-group-text" for="textArea">What additional comments or suggestions do you have about this course?</label>
         <textarea class="form-control" name="free_form" id="textArea" aria-label="With textarea" onChange={handleChange}></textarea>
-    
-        <button className="submitFeedbackBtn btn btn-primary" type="submit">Submit</button>
-        
+
+        {showWarning && <div className="alert alert-warning" role="alert">Please select ratings for all categories.</div>}
+        {/*Tenary operator in data-bs-modal ensures that user must fill in all radio boxes before submitting */}
+        <button className="submitFeedbackBtn btn btn-primary" type="submit" data-bs-dismiss={allRadioChecked() ? "modal" : ""}>Submit</button>
+        <button type="button" className="resetFeedbackBtn btn btn-danger" onClick={handleReset}>Reset</button>
     </form>
   );
 }

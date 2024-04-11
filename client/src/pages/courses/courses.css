@@ -1,5 +1,5 @@
 .layout{
-    background-image: url(../../../public/cool-background.png);
+    background-image: url(images/cool-background.png);
     background-size: cover;
     background-position: center;
     transition: 1s ease;
@@ -109,11 +109,24 @@
     background-color: green;
 }
 
-.feedback-toolbar h5{
+.resetFeedbakBtn{
+    margin:10px;
+    background-color: red;
+}
+
+.feedback-toolbar .btn-toolbar h5{
     margin:10px;
     margin-bottom: 10px;
 }
 
+.feedback-toolbar label{
+    color: #0b56c3;
+}
+
 .feedback-questions{
     margin:10px;
+}
+
+.feedback-toolbar .feedback-freeform{
+    color:black;
 }
