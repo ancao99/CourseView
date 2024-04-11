@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../adminLayout/SideBar';
 import Navbar from '../adminLayout/NavBar';
-import "./adminTerms.css";
+import "./adminUser.css";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import ClientAPI from "../../api/clientAPI";
 
-export const AdminTerms = () => {
-    const [terms, setTerms] = useState([]);
+export const AdminUser = () => {
+    const [clients, setClients] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const termsPerPage = 10;
-    const indexOfLastTerm = currentPage * termsPerPage;
-    const indexOfFirstTerm = indexOfLastTerm - termsPerPage;
-    const currentTerms = terms.slice(indexOfFirstTerm, indexOfLastTerm);
+    const clientPerPage = 10;
+    const indexOfLastClient = currentPage * clientPerPage;
+    const indexOfFirstClient = indexOfLastClient - clientPerPage;
+    const currentClient = clients.slice(indexOfFirstClient, indexOfLastClient);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -21,22 +21,22 @@ export const AdminTerms = () => {
             navigate("/");
     }, []);
 
-    async function fetchTerms() {
+    async function fetchClients() {
         try {
-            const data = { limit: termsPerPage, page: currentPage };
-            const response = await ClientAPI.post("getTerms", data);
-            setTerms(response.data);
+            const data = { limit: clientPerPage, page: currentPage };
+            const response = await ClientAPI.post("getClient", data);
+            setClients(response.data);
         } catch (error) {
-            console.error("Error fetching terms:", error);
+            console.error("Error fetching user:", error);
         }
     }
 
     useEffect(() => {
-        fetchTerms();
+        fetchClients();
     }, [currentPage]);
 
     const paginate = pageNumber => {
-        if (pageNumber < 1 || pageNumber > Math.ceil(terms.length / termsPerPage)) {
+        if (pageNumber < 1 || pageNumber > Math.ceil(clients.length / clientPerPage)) {
             return;
         }
         setCurrentPage(pageNumber);
@@ -50,36 +50,22 @@ export const AdminTerms = () => {
         setIsModalOpen(false);
     };
 
-    const handleAddTerms = async (event) => {
-        event.preventDefault();
-        try {
-            const name = event.target.elements.terms.value;
-            const data = { terms: name }; 
-            const response = await ClientAPI.post("addTerms", data);
-            console.log('start from herer', response.data);
-            await fetchTerms();
-        } catch (error) {
-            console.error("Error adding term:", error);
-            console.log("Error details:", error.response.data);
-        }
-        closeModal();
-    };
 
-    const removeTerm = async (event, termID) => {
+    const removeClients = async (event, userID) => {
         event.preventDefault();
         try {
             const data = {
-                termID: termID,
+                userID: userID,
             }
-            await ClientAPI.post("deleteTerms", data);
-            alert("Deleted Term Successfully");
-            await fetchTerms();
+            await ClientAPI.post("deleteClient", data);
+            alert("Deleted User Successfully");
+            await fetchClients();
         } catch (error) {
-            console.error("Error deleting term:", error);
-            alert("Error deleting term: " + error.message);
+            console.error("Error deleting user:", error);
+            alert("Error deleting user: " + error.message);
         }
     }
-    
+
 
     useEffect(() => {
         const modalForm = document.getElementById("addModal");
@@ -100,10 +86,10 @@ export const AdminTerms = () => {
             <main className="content-main-product">
                 <div className="head-title">
                     <div className="adminLeft">
-                        <h1>Terms</h1>
+                        <h1>User</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">Terms</a>
+                                <a href="#">User</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
@@ -117,55 +103,43 @@ export const AdminTerms = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Terms</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Department</th>
+                            <th>Major</th>
+                            <th>Minor</th>
+                            <th>School Year</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {currentTerms.map((term) => (
-                            <tr key={term.id}>
-                                <td>{term.id}</td>
-                                <td>{term.name}</td>
-                                <td class="grid-container">
-                                    <a class="edit" role="button" href={`adminUpdateTerms/${term.id}`}>
+                        {currentClient.map((user) => (
+                            (!user.isAdmin) && (
+                            <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.fullName}</td>
+                                <td>{user.email}</td>
+                                <td>{user.phone}</td>
+                                <td>{user.department}</td>
+                                <td>{user.major}</td>
+                                <td>{user.minor}</td>
+                                <td>{user.school}</td>
+                                <td className="grid-container"> {/* Changed 'class' to 'className' */}
+                                    <a className="edit" role="button" href={`adminUpdateUser/${user.id}`}>
                                         Edit
                                     </a>
                                     <form method="post" action="">
-                                        <button className="delete" onClick={(e) => removeTerm(e, term.id)}>
+                                        <button className="delete" onClick={(e) => removeClients(e, user.id)}>
                                             Delete
                                         </button>
                                     </form>
                                 </td>
-                            </tr>
+                            </tr>)
                         ))}
+
                     </tbody>
                 </table>
-
-                <button id="add-btn" onClick={openModal}>
-                    Add New
-                </button>
-
-                {isModalOpen && (
-                    <div id="addModal" className="modal-form">
-                        <div id="popup-form" className="popup">
-                            <h2 style={{ textAlign: 'center', color: 'var(--blue)' }}>Add New Term</h2>
-                            <br />
-                            <h5>EX: SP 2024</h5>
-                            <br />
-                            <form onSubmit={handleAddTerms} encType="multipart/form-data">
-                                <label htmlFor="terms">Term:</label>
-                                <input required type="text" id="terms" name="terms" /><br />
-
-                                <button id="close-btn" type="button" onClick={closeModal}>
-                                    Close
-                                </button>
-                                <button type="submit" name="addProduct">
-                                    Add New
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                )}
                 <br /><br />
                 <div className='page-number-admin'>
                     <div aria-label="Page navigation example">
@@ -175,14 +149,14 @@ export const AdminTerms = () => {
                                     <span aria-hidden="true">«</span>
                                 </a>
                             </li>
-                            {[...Array(Math.ceil(terms.length / termsPerPage)).keys()].map((number, index) => (
+                            {[...Array(Math.ceil(clients.length / clientPerPage)).keys()].map((number, index) => (
                                 <li key={index} className="page-item">
                                     <a onClick={() => paginate(number + 1)} href={`#${number + 1}`} className={`page-link ${currentPage === number + 1 ? 'active' : ''}`}>
                                         {number + 1}
                                     </a>
                                 </li>
                             ))}
-                            <li className={`page-item ${currentPage >= Math.ceil(terms.length / termsPerPage) ? 'disabled' : ''}`}>
+                            <li className={`page-item ${currentPage >= Math.ceil(clients.length / clientPerPage) ? 'disabled' : ''}`}>
                                 <a className="page-link" href={`#${currentPage + 1}`} onClick={() => paginate(currentPage + 1)} aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                 </a>

@@ -20,8 +20,8 @@ import { Profile } from "./pages/profile";
 import { AdminDashboard } from './admin/adminDashboard';
 import { AdminCourses } from './admin/adminCourses/';
 import { AdminUpdateCourses } from './admin/adminCourses/adminUpdateCourses';
-import { AdminTerms } from './admin/adminTerms/';
-import { AdminUpdateTerms } from './admin/adminTerms/adminUpdateTerms';
+import { AdminUser } from './admin/adminUser/';
+import { AdminUpdateUser } from './admin/adminUser/adminUpdateUser';
 import { AdminDepartment } from './admin/adminDepartment/';
 import { AdminUpdateDepartment } from './admin/adminDepartment/adminUpdateDepartment';
 
@@ -74,12 +74,12 @@ const router = createBrowserRouter([
     element: <AdminUpdateCourses />,
   },
   {
-    path: "adminTerms",
-    element: <AdminTerms />,
+    path: "adminUser",
+    element: <AdminUser />,
   },
   {
-    path: "adminUpdateTerms/:termsID",
-    element: <AdminUpdateTerms />,
+    path: "adminUpdateUser/:userID",
+    element: <AdminUpdateUser />,
   },
   {
     path: "adminDepartment",

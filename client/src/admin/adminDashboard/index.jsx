@@ -86,13 +86,13 @@ export const AdminDashboard = () => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <p>Minh Le</p>
+                                        <p>An Cao</p>
                                     </td>
                                     <td>04-01-2024</td>
                                     <td>Admin</td>
                                     <td><span class="status completed">Success</span></td>
                                     <td>Administrator</td>
-                                    <td>Mac</td>
+                                    <td>Window</td>
                                 </tr>
                             </tbody>
                         </table>

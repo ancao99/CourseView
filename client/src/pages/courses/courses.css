@@ -3,15 +3,14 @@
     background-size: cover;
     background-position: center;
     transition: 1s ease;
+    padding-top: 100px;
 }
 
 .layout .container{
     padding-bottom: 30%;
 }
 
-.layout label{
-    color:white;
-}
+
 
 .search-bar {
     margin-top:70px;

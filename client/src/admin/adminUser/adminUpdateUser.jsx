@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../adminLayout/SideBar';
 import Navbar from '../adminLayout/NavBar';
-import "./adminTerms.css";
+import "./adminUser.css";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import ClientAPI from "../../api/clientAPI";
 import MySecurity from "../../api/mySecurity";
 
-export const AdminUpdateTerms = () => {
+export const AdminUpdateUser = () => {
     const { termID } = useParams();
     const [termName, setTermName] = useState('');
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ export const AdminUpdateTerms = () => {
 
     const handleCancelEdit = (event) => {
         event.preventDefault();
-        navigate("/adminTerms");
+        navigate("/adminUser");
     };
 
     // update product
@@ -45,7 +45,7 @@ export const AdminUpdateTerms = () => {
             const respond = await ClientAPI.post("updateTerms", data);
             if (respond.data !== null && respond.data !== undefined) {
                 //alert("Edited: ")
-                navigate("/adminTerms")
+                navigate("/adminUser")
             }
         }
         catch (err) {
@@ -82,14 +82,14 @@ export const AdminUpdateTerms = () => {
             <main>
                 <div className="head-title">
                     <div className="adminLeft">
-                        <h1>Edit Term</h1>
+                        <h1>Edit User</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">Terms</a>
+                                <a href="#">User</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
-                                <a class="active" href="/adminTerms">Home</a>
+                                <a class="active" href="/adminUser">Home</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
@@ -99,8 +99,53 @@ export const AdminUpdateTerms = () => {
                     </div>
                 </div>
 
-                <div className="updateProduct">
-                    <form onSubmit={handleEditTerm} encType="multipart/form-data">
+                <div className="updateProduct"> 
+                    <form onSubmit={handleEditTerm} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <label htmlFor="name" style={{ marginLeft: '30px' }}>Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={inputValues.name}
+                            onChange={handleInputChange}
+                            required
+                        />
+                         <label htmlFor="email">Email:</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            value={inputValues.email}
+                            onChange={handleInputChange}
+                            required
+                        />
+                         <label htmlFor="department">Department:</label>
+                        <input
+                            type="text"
+                            id="department"
+                            name="department"
+                            value={inputValues.name}
+                            onChange={handleInputChange}
+                            required
+                        />
+                         <label htmlFor="major">Major:</label>
+                        <input
+                            type="text"
+                            id="major"
+                            name="major"
+                            value={inputValues.name}
+                            onChange={handleInputChange}
+                            required
+                        />
+                         <label htmlFor="name">Term Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={inputValues.name}
+                            onChange={handleInputChange}
+                            required
+                        />
                         <label htmlFor="name">Term Name:</label>
                         <input
                             type="text"
@@ -109,17 +154,26 @@ export const AdminUpdateTerms = () => {
                             value={inputValues.name}
                             onChange={handleInputChange}
                             required
-                        /><br />
+                        />
+                        <label htmlFor="name">Term Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={inputValues.name}
+                            onChange={handleInputChange}
+                            required
+                        />
 
                         <button
                             type="button"
-                            name="cancelEditTerm"
+                            name="cancelEditUser"
                             onClick={handleCancelEdit}
                             style={{ marginRight: '10px' }}
                         >
                             Cancel
                         </button>
-                        <button type="submit" name="editTerm">Edit Term</button>
+                        <button type="submit" name="editUser">Edit User</button>
                     </form>
                 </div>
             </main>

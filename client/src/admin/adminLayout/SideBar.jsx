@@ -10,10 +10,12 @@ const Sidebar = ({ hidden }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(0);
 
   const allSideMenu = [
-    { text: 'Dashboard', icon: '/dashboard_icon.png', href: '/adminDashboard' },
-    { text: 'Courses', icon: '/courses_icon.png', href: '/adminCourses' },
-    { text: 'Terms', icon: '/terms_icon.png', href: '/adminTerms' },
-    { text: 'Department', icon: '/department_icon.png', href: '/adminDepartment' },
+    { text: 'Dashboard', icon: '/admin-dashboard.png', href: '/adminDashboard' },
+    { text: 'Courses', icon: '/admin-course.png', href: '/adminCourses' },
+    { text: 'User', icon: '/admin-user.png', href: '/adminUser' },
+    { text: 'Review', icon: '/admin-review.png', href: '/adminDepartment' },
+    { text: 'Feedback', icon: '/admin-feedback.png', href: '/adminFeedback' },
+
   ];
 
   const handleMenuItemClick = (index, route) => {
@@ -42,9 +44,9 @@ const Sidebar = ({ hidden }) => {
     <section id="sidebar" className={hidden ? 'hide' : ''}>
       <Link to="/courses" className="brand">
         <img src="/logo.png" alt="Profile" />
-        <span className="text"> GSU ReviewHub</span>
+        <span className="text"> CourseView</span>
       </Link>
-      <ul className="side-menu top">
+      <ul className="side-menu top" style={{ listStyleType: 'none' }}>
         {allSideMenu.map((item, index) => (
           <li key={index} className={location.pathname === item.href ? 'active' : ''}>
             <Link
@@ -57,7 +59,7 @@ const Sidebar = ({ hidden }) => {
           </li>
         ))}
       </ul>
-      <ul className="side-menu bottom">
+      {/* <ul className="side-menu bottom">
         <li>
           <Link to="/settings">
             <img src="/settings_icon.png" alt="Logout" className="dropdown-icon" />
@@ -70,7 +72,7 @@ const Sidebar = ({ hidden }) => {
             <span className="text">Logout</span>
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </section>
   );
 };

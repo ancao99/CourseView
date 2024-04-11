@@ -5,7 +5,7 @@
   }
   
   .wrapper{
-    margin: 160px 0 ;
+    margin: 210px 0 ;
     border-radius: 3%;
     box-sizing: border-box;
     list-style: none;
@@ -14,7 +14,7 @@
     left: 50%;
     height: 555px;
     display: flex;
-    box-shadow: 0 19px 38px #90CAF9, 0 15px 12px #90CAF9
+    box-shadow: 0 19px 38px #90CAF9, 0 15px 12px #90CAF9;
   }
 
 .wrapper .left{
