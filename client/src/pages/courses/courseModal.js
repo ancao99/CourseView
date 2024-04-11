@@ -1,8 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
-const courseModal = ({selectedCourse }) =>{
+const CourseModal = ({selectedCourse }) =>{
+  const [ratings, setRatings] = useState({
+    overall : '',
+    courseContent: '',
+    classEnv: '',
+    assignAsses: '',
+    interEngage: '',
+    feedbackSupport: '',
+    orgStruct: '',
+    relevancePract: ''
+  });
+
+  //add function to get avg feedback table / array
+  //for now it does nothing
+  const getFeedback = (crn) => {
+
+  };
+
+  //add function to create appropriate values for Rating values
+  //for now it does nothing
+  const assignValue = (feedbackData) => {
+    
+    
+  };
+
+  // Update ratings when selected course changes
+  useEffect(() => {
+    if (selectedCourse) {
+      // Fetch feedback data for the selected course
+      const feedbackData = getFeedback(selectedCourse.crn);
+
+      // Calculate ratings based on feedback data
+      const newRatings = assignValue(feedbackData);
+
+      // Update ratings state
+      setRatings(newRatings);
+    }
+  }, [selectedCourse]);
 
     return(
         <div class="modal fade" id="viewCourseFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewCourseFeedback" aria-hidden="true">
@@ -54,35 +91,35 @@ const courseModal = ({selectedCourse }) =>{
                     <h5>Feedback Rating:</h5>
                     <br></br>
                     <Typography component="legend">Overall</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['overall']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Course Content</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['courseContent']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Class Environment</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['classEnv']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Assignments and Assessments</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['assignAsses']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Interaction and Engagement</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['interEngage']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Feedback and Support</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['feedbackSupport']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Course Organization and Structure</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['orgStruct']} readOnly />
                     <br></br>
                     <br></br>
                     <Typography component="legend">Relevance and Practicality</Typography>
-                    <Rating name="read-only" value={4} readOnly />
+                    <Rating name="read-only" value={ratings['relevancePract']} readOnly />
                   </div>
                 </div>
             </div>
@@ -95,4 +132,4 @@ const courseModal = ({selectedCourse }) =>{
       </div>
     );
 }
-export default courseModal;
+export default CourseModal;

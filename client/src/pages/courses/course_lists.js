@@ -83,8 +83,9 @@ const CourseList = () => {
       setSelectedCourse(course);
     };
 
+    //TODO: prepare data to send to database
     const handleSubmitFeedback = (ratings) => {
-      // Handle submission logic here, such as sending the data to a server
+      // TODO: Handle submission logic here, such as sending the data to a server
       console.log('Received ratings:', ratings);
       
     };
@@ -98,7 +99,7 @@ const CourseList = () => {
             <div className="col">
               <div className="course-list">
                 {filteredCourses.length > 0 ? (
-                  <div className='row'>
+                  <div className='row scroll-div'>
                     <h1>Course List</h1>
                     {filteredCourses.map(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) => (
                       <div key={crn} className="course-item">

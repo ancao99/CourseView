@@ -50,6 +50,11 @@
     width: 100%;
 }
 
+.scroll-div{
+    overflow-y: auto;
+    max-height: 500px;
+}
+
 .course-item {
     border: 1px solid #ccc;
     border-radius: 10px;
