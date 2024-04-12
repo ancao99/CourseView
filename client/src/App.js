@@ -70,7 +70,7 @@ const router = createBrowserRouter([
     element: <AdminCourses />,
   },
   {
-    path: "adminUpdateCourses/:coursesID",
+    path: "adminUpdateCourses/:courseID",
     element: <AdminUpdateCourses />,
   },
   {

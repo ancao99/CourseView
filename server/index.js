@@ -111,7 +111,12 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             break;
         case "addCourses":
             Courses.addCourses(data.entry, res);
-            console.log(data.entry)
+            break;
+        case "updateCourses":
+            Courses.updateCourses(data.entry, res);
+            break;
+        case "getCoursesDetail":
+            Courses.getCoursesDetail(key, data.entry, res);
             break;
 
         default:

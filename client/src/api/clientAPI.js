@@ -25,7 +25,8 @@ export default class ClientAPI {
             case "getCourses":
             case "deleteCourses":
             case "addCourses":
-
+            case "updateCourses":
+            case "getCoursesDetail":
                 /* product
                 case "getProduct":                
                 case "getProductDetail": 
