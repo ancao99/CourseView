@@ -25,7 +25,7 @@ export const AdminCourses = () => {
             navigate("/");
     }, []);
 
-    
+
 
     useEffect(() => {
         async function fetchCourses() {
@@ -91,77 +91,41 @@ export const AdminCourses = () => {
         setIsModalOpen(false);
     };
 
-    /*            
-    const handleAddCourses = async (event) => {
-                event.preventDefault();
-                try {
-                    const formData = new FormData();
-                    
-                    const file = event.target.elements.excelFile.files[0]; // Get the uploaded file
-                    const terms = event.target.elements.terms.value; // Get the selected term
-                    const departments = event.target.elements.departments.value; // Get the selected department
-                    
-                    formData.append('terms', terms);
-                    formData.append('departments', departments);
-                    formData.append('excelFile', file);
-                    
-                    console.log('terms', terms);
-                    console.log('departments', departments);
-                    console.log('excelFile', file);
-                    
-                    console.log("Data sent to server:", formData);
-                    
-                    const response = await ClientAPI.post("addCourses", formData);
-                    console.log("Response from server:", response);
-                    
-                    // If the response is successful, fetch updated courses
-                    if (response && response.data) {
-                        await fetchCourses();
-                    } else {
-                        console.error("Invalid response from server:", response);
-                    }
-                } catch (error) {
-                    console.error("Error adding Courses:", error);
-                    console.log("Error details:", error.response?.data);
-                }
-                closeModal();
-            }; 
-            */
     const handleAddCourses = async (event) => {
         event.preventDefault();
         try {
-            const file = event.target.elements.excelFile.files[0]; // Get the uploaded file
-            console.log(file);
-            if (!file) {
-                alert("Please select an Excel file.");
-                return;
-            }
-            const terms = event.target.elements.terms.value; // Get the selected term
-            const departments = event.target.elements.departments.value; // Get the selected department
-
-            // Create a FormData object
-            const formData = new FormData();
-            formData.append('excelFile', file); // Append the file to FormData
-            formData.append('terms', terms); // Append terms to FormData
-            formData.append('departments', departments); // Append departments to FormData
-
-            console.log("Data sent to server:", formData);
-
-            const response = await CourseAPI.addCourses(formData);
-            console.log("Response from server:", response);
-
-            // If the response is successful, fetch updated courses
-            if (response && response.data) {
-                await fetchCourses();
-            } else {
-                console.error("Invalid response from server:", response);
-            }
+            const formData = new FormData(event.target);
+            const crn = formData.get('crn');
+            const subject = formData.get('subject');
+            const courseNumber = formData.get('courseNumber');
+            const section = formData.get('section');
+            const hours = formData.get('hour'); 
+            const title = formData.get('title');
+            const professor = formData.get('professor');
+            const schedule_type = formData.get('schedule_type');
+    
+            const data = {
+                crn: parseInt(crn),
+                subject: subject,
+                courseNumber: parseInt(courseNumber),
+                section: parseInt(section),
+                hours: hours,
+                title: title,
+                professor: professor,
+                schedule_type: schedule_type,
+            };
+            console.log(data)
+            const response = await ClientAPI.post("addCourses", data);
+            console.log('Response:', response.data);
+            await fetchCourses();
         } catch (error) {
-            console.error("Error adding Courses:", error);
-            console.log("Error details:", error.response?.data);
+            console.error("Error adding course:", error);
+            console.log("Error details:", error.response.data);
         }
         closeModal();
     };
+    
+    
 
 
     const removeCourses = async (event, courseID) => {
@@ -260,43 +224,43 @@ export const AdminCourses = () => {
 
                 {isModalOpen && (
                     <div id="addModal" className="modal-form">
-                    <div id="popup-form" className="popup">
-                        <h2 style={{ textAlign: 'center', color: 'var(--blue)' }}>Add New Course</h2>
-                        <br />
-                        <form onSubmit={handleAddCourses} encType="multipart/form-data">
-                            <label htmlFor="course">CRN:</label>
-                            <input required type="text" id="course" name="course" /><br />
+                        <div id="popup-form" className="popup">
+                            <h2 style={{ textAlign: 'center', color: 'var(--blue)' }}>Add New Course</h2>
+                            <br />
+                            <form onSubmit={handleAddCourses} encType="multipart/form-data">
+                                <label htmlFor="crn">CRN:</label>
+                                <input required type="text" id="crn" name="crn" /><br />
 
-                            <label htmlFor="subject">Subject:</label>
-                            <input required type="text" id="subject" name="subject" /><br />
+                                <label htmlFor="subject">Subject:</label>
+                                <input required type="text" id="subject" name="subject" /><br />
 
-                            <label htmlFor="courseNumber">Course Number:</label>
-                            <input required type="text" id="courseNumber" name="courseNumber" /><br />
+                                <label htmlFor="courseNumber">Course Number:</label>
+                                <input required type="text" id="courseNumber" name="courseNumber" /><br />
 
-                            <label htmlFor="section">Section:</label>
-                            <input required type="text" id="section" name="section" /><br />
+                                <label htmlFor="section">Section:</label>
+                                <input required type="text" id="section" name="section" /><br />
 
-                            <label htmlFor="hour">Hour:</label>
-                            <input required type="text" id="hour" name="hour" /><br />
+                                <label htmlFor="hour">Hour:</label>
+                                <input required type="text" id="hour" name="hour" /><br />
 
-                            <label htmlFor="title">Title:</label>
-                            <input required type="text" id="title" name="title" /><br />
+                                <label htmlFor="title">Title:</label>
+                                <input required type="text" id="title" name="title" /><br />
 
-                            <label htmlFor="professor">Professor:</label>
-                            <input required type="text" id="professor" name="professor" /><br />
+                                <label htmlFor="professor">Professor:</label>
+                                <input required type="text" id="professor" name="professor" /><br />
 
-                            <label htmlFor="schedule_type">Schedule Type:</label>
-                            <input required type="text" id="schedule_type" name="schedule_type" /><br />
+                                <label htmlFor="schedule_type">Schedule Type:</label>
+                                <input required type="text" id="schedule_type" name="schedule_type" /><br />
 
-                            <button id="close-btn" type="button" onClick={closeModal}>
-                                Close
-                            </button>
-                            <button type="submit" name="addProduct">
-                                Add New
-                            </button>
-                        </form>
+                                <button id="close-btn" type="button" onClick={closeModal}>
+                                    Close
+                                </button>
+                                <button type="submit" name="addProduct">
+                                    Add New
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 )}
                 <br /><br />
                 <div className='page-number-admin'>

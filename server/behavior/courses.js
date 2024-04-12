@@ -8,7 +8,8 @@ export default class Courses {
         try {
             db.execute(`
                 SELECT *
-                FROM course`, (err, data) => {
+                FROM course
+                ORDER BY course.courseID DESC`, (err, data) => {
                 if (err) return res.status(500).json(err);
                 const courses = data.map(course => ({
                     id: course.courseID,
@@ -31,66 +32,31 @@ export default class Courses {
     }
 
 
-    /*
-    static async addCourses(inputData, res) {
+    static addCourses(inputD, res) {
         try {
-            const { terms, departments, excelFile } = inputData;
-            console.log('terms', terms);
-            console.log('depart', departments);
-            console.log('excel ', excelFile);
-            // Load the workbook
-            const workbook = xlsx.readFile(excelFile.path);
+            const { crn, subject, courseNumber, section, hours, title, professor, schedule_type } = inputD;
+            console.log("course ", inputD)
 
-            // Assuming the first sheet is the relevant one
-            const sheet = workbook.Sheets[workbook.SheetNames[0]];
-
-            // Array to hold the courses data
-            const coursesData = [];
-
-            // Assuming the first row contains headers
-            // Adjust row number if necessary
-            const startRow = 2;
-
-            // Loop through rows starting from the second row
-            for (let i = startRow; sheet[`A${i}`]; i++) {
-                if (!sheet[`A${i}`] || !sheet[`B${i}`] || !sheet[`C${i}`]) {
-                    continue;
-                }
-                // Extract data from each row
-                const crn = sheet[`A${i}`].v;
-                const course = sheet[`B${i}`].v;
-                const professor = sheet[`C${i}`].v;
-
-                // Split course into prefix and number
-                const [coursePrefix, courseNumber] = course.split(' ');
-
-                // Add the extracted data to the coursesData array
-                coursesData.push({
-                    crn,
-                    coursePrefix,
-                    courseNumber,
-                    professor,
-                    terms,
-                    departments
-                });
+            console.log("course backend", crn)
+            if (!crn || !subject || !courseNumber || !section || !hours || !title || !professor || !schedule_type) {
+                throw new Error("Course name is missing or undefined.");
             }
-
-            // Insert the extracted data into the database
-            //const insertQuery = `INSERT INTO courses (crn, coursePrefix, courseNumber, professor, terms, departments) VALUES ?`;
-            const insertQuery = `INSERT INTO courses (CRN, coursePrefix, courseNumber, professor, termsID, departmentID) VALUES ?`;
-            db.query(insertQuery, [coursesData.map(course => [course.crn, course.coursePrefix, course.courseNumber, course.professor, course.terms, course.departments])], (err, data) => {
+            const insertQuery = `            
+            INSERT INTO course (crn, subject, courseNumber, section, hours, title, professor, schedule_type) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+            db.execute(insertQuery, [crn, subject, courseNumber, section, hours, title, professor, schedule_type], (err, data) => {
                 if (err) {
-                    console.error("Error inserting courses:", err);
+                    console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
                 }
-                return res.status(200).json("Courses added successfully.");
+                return res.status(200).json("Term Added Successfully.");
             });
-        } catch (error) {
-            console.error("Error adding courses:", error);
-            return res.status(500).json("Failed to add courses. " + error);
+        }
+        catch (error) {
+            console.error("Error adding course:", error);
+            return res.status(500).json("Failed to add course. " + error);
         }
     }
-*/
 
 
     static deleteCourses(inputD, res) {
@@ -117,13 +83,13 @@ export default class Courses {
     static async updateCourses(inputData, res) {
         try {
             console.log('Received data:', inputData);
-            const { coursesID, termsID, departmentID } = inputData;
-            if (!coursesID || !termsID || !departmentID) {
-                throw new Error("Courses ID, termsID, or departmentID is missing or undefined.");
+            const { coursesID, courseID, departmentID } = inputData;
+            if (!coursesID || !courseID || !departmentID) {
+                throw new Error("Courses ID, courseID, or departmentID is missing or undefined.");
             }
             // Execute SQL query to update the Courses
-            const updateQuery = `UPDATE courses SET termsID = ?, departmentID = ? WHERE coursesID = ?`;
-            db.execute(updateQuery, [termsID, departmentID, coursesID], (err, data) => {
+            const updateQuery = `UPDATE courses SET courseID = ?, departmentID = ? WHERE coursesID = ?`;
+            db.execute(updateQuery, [courseID, departmentID, coursesID], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);

@@ -109,7 +109,11 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
         case "deleteCourses":
             Courses.deleteCourses(data.entry, res);
             break;
-            
+        case "addCourses":
+            Courses.addCourses(data.entry, res);
+            console.log(data.entry)
+            break;
+
         default:
             res.status(400).json("Bad Request");
             break;
