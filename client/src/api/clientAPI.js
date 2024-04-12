@@ -21,6 +21,10 @@ export default class ClientAPI{
             case "deleteClient":
             case "getUserDetail":
 
+            //course
+            case "getCourses":
+            case "deleteCourses":
+
             /* product
             case "getProduct":                
             case "getProductDetail": 
