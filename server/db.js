@@ -1,16 +1,37 @@
 import mysql from "mysql2"
 import fs from "fs"
+import { CourseData } from "./courses_array.js";
 
 const dbConfig = {
-    ///host: "localhost",
     host: "127.0.0.1",
-    ///port: 3306,
-    user: "root",
-    password: "Hoangminh2345",
+    user: "taone",
+    password: "taothik",
     database: "courseview"
 }
 
 export const db = mysql.createConnection(dbConfig)
+
+const insertCourseData = () => {
+    // Loop through the CourseData array and insert each course into the database
+    CourseData.forEach(course => {
+        const [crn, subject, courseNumber, section, hours, title, professor, schedule_type] = course;
+        const query = `
+            INSERT INTO course (crn, subject, courseNumber, section, hours, title, professor, schedule_type) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        db.execute(query, [crn, subject, courseNumber, section.toString(), hours, title, professor, schedule_type], (err, results) => {
+            if (err) {
+                console.error('Error inserting course data:', err);
+            } else {
+                console.log('Course data inserted successfully.');
+            }
+        });
+    });
+};
+
+// Call the function to insert course data
+//insertCourseData();
+
 
 export const checkDatabase = async () => {   
     let db3 = mysql.createConnection({
