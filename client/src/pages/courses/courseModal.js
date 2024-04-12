@@ -145,6 +145,7 @@ const CourseModal = ({selectedCourse }) =>{
                 </div>
             </div>
             <div class="modal-footer">
+              {/*If there is a variable/cookie that tracks if a user is logged in we can make the button fot add feedback display  */}
               <button type="button" class="btn btn-primary" data-bs-target="#course_feedback" data-bs-toggle="modal">Add your own Feedback on this Course</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
