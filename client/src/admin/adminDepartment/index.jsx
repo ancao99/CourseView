@@ -100,10 +100,10 @@ export const AdminDepartment = () => {
             <main className="content-main-product">
                 <div className="head-title">
                     <div className="adminLeft">
-                        <h1>Department</h1>
+                        <h1>Student Review</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">Department</a>
+                                <a href="#">Review</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
@@ -117,7 +117,7 @@ export const AdminDepartment = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Department</th>
+                            <th>Review</th>
                             <th>Action</th>
                         </tr>
                     </thead>

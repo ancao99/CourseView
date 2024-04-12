@@ -7,12 +7,12 @@ import ClientAPI from "../../api/clientAPI";
 import "./adminFeedback.css";
 
 export const AdminFeedback = () => {
-    const [feedbacks, setFeedback] = useState([]);
+    const [clients, setClients] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const feedbackPerPage = 10;
-    const indexOfLastFeedback = currentPage * feedbackPerPage;
-    const indexOfFirstFeedback = indexOfLastFeedback - feedbackPerPage;
-    const current = clients.slice(indexOfFirstClient, indexOfLastClient);
+    const clientPerPage = 10;
+    const indexOfLastClient = currentPage * clientPerPage;
+    const indexOfFirstClient = indexOfLastClient - clientPerPage;
+    const currentClient = clients.slice(indexOfFirstClient, indexOfLastClient);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -89,11 +89,7 @@ export const AdminFeedback = () => {
                         <h1>Feedback</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">Feedback</a>
-                            </li>
-                            <li><i class='bx bx-chevron-right' ></i></li>
-                            <li>
-                                <a class="active" href="#">Home</a>
+                                <a class="active" href="#">Feedback</a>
                             </li>
                         </ul>
                     </div>
@@ -126,9 +122,6 @@ export const AdminFeedback = () => {
                                 <td>{user.minor}</td>
                                 <td>{user.school}</td>
                                 <td className="grid-container"> {/* Changed 'class' to 'className' */}
-                                    <a className="edit" role="button" href={`adminUpdateUser/${user.id}`}>
-                                        Edit
-                                    </a>
                                     <form method="post" action="">
                                         <button className="delete" onClick={(e) => removeClients(e, user.id)}>
                                             Delete

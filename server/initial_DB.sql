@@ -17,9 +17,6 @@ ALTER TABLE `user`(
   ADD major VARCHAR(50) DEFAULT 'major',
 );
 
-
-
-
 CREATE TABLE `userToken`
 (
   `tokenKey` VARCHAR(255),
@@ -28,6 +25,15 @@ CREATE TABLE `userToken`
   PRIMARY KEY (`tokenKey`),
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
+
+
+INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) 
+  VALUES ('1', '0', '0', '0', '1');
+
+
+INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) 
+  VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');
+
 
 CREATE TABLE `course`
 (
@@ -43,6 +49,7 @@ CREATE TABLE `course`
    PRIMARY KEY (`courseID`)
 );
 
+
 CREATE TABLE `feedback`
 (
   `feedbackID` INT AUTO_INCREMENT,
@@ -55,26 +62,20 @@ CREATE TABLE `feedback`
   PRIMARY KEY (`appReviewID`),
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
+
 INSERT INTO `app_feedback` (`userID`, `name`, `role`, `type`, `comment`, `recommed`)
   VALUES (14, 'John Doe', 'Student', 'Feature Request', 'I suggest adding a chat feature to the platform.', 'Yes');
-
-INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) 
-  VALUES ('1', '0', '0', '0', '1');
 
 
 
 CREATE TABLE `review`
 (
   `reviewID` INT AUTO_INCREMENT,
-  `coursesID` INT,
+  `courseID` INT,
   `userID` INT,
   `comment` TEXT,
   `reviewDate` DATETIME,
   PRIMARY KEY (`reviewID`),
-  FOREIGN KEY (`coursesID`) REFERENCES `courses`(`coursesID`),
+  FOREIGN KEY (`courseID`) REFERENCES `course`(`courseID`),
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
-
-
-INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) 
-  VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');

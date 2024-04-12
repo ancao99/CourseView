@@ -89,11 +89,7 @@ export const AdminUser = () => {
                         <h1>User</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">User</a>
-                            </li>
-                            <li><i class='bx bx-chevron-right' ></i></li>
-                            <li>
-                                <a class="active" href="#">Home</a>
+                                <a class="active" href="#">User</a>
                             </li>
                         </ul>
                     </div>

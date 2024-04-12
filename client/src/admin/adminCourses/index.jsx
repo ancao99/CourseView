@@ -165,11 +165,7 @@ export const AdminCourses = () => {
                         <h1>Courses</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">Courses</a>
-                            </li>
-                            <li><i class='bx bx-chevron-right' ></i></li>
-                            <li>
-                                <a class="active" href="#">Home</a>
+                                <a class="active" href="#">Course</a>
                             </li>
                         </ul>
                     </div>
@@ -290,4 +286,3 @@ export const AdminCourses = () => {
         </section>
     );
 };
-
