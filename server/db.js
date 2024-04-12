@@ -7,6 +7,7 @@ const dbConfig = {
     user: "root",
     password: "Hoangminh2345",
     database: "courseview"
+    
 }
 
 export const db = mysql.createConnection(dbConfig)
