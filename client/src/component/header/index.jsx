@@ -10,10 +10,12 @@ export function Header() {
     const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+
   // feedback function 
   const navigate = useNavigate();
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const feedbackFormRef = useRef(null);
+  
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -143,16 +145,7 @@ export function Header() {
                 <span />
               </div>
             </div>
-            <div className="form-control">
-              <label className="email" id="label-email">
-                <strong>Email</strong>
-              </label>
-              {/* Input Type Email*/}
-              <div>
-                <input type="email" id="email" placeholder="Enter your email" required />
-                <span />
-              </div>
-            </div>
+
             <div className="form-control">
               <label className="role" id="label-role">
                 <strong>Which option best describes you?</strong>
@@ -160,9 +153,28 @@ export function Header() {
               {/* Dropdown options */}
               <select name="role" id="role">
                 <option value="student">Student</option>
-                <option value="professional">Professional</option>
-                <option value="other">Anonymous</option>
+                <option value="professional">Professor</option>
+                <option value="other">Not Student nor Professor</option>
               </select>
+            </div>
+            <div className="form-control">
+              <label className="type" id="type">
+                <strong>Feedback Type</strong>
+              </label>
+              {/* Input Type Email*/}
+              <div>
+                <input type="text" id="type" placeholder="What is the problem?" required />
+                <span />
+              </div>
+            </div>
+            <div className="form-control">
+              <label className="comment"><strong>Any comments or suggestions</strong></label>
+              {/* multi-line text input control */}
+              <textarea
+                name="comment"
+                id="comment"
+                placeholder="Enter your comment here"
+              />
             </div>
             <div id='radio-button-form' className="form-control">
               <label><strong>Would you recommend CourseView to a friend?</strong></label>
@@ -180,15 +192,7 @@ export function Header() {
                 &nbsp; Maybe
               </label>
             </div>
-            <div className="form-control">
-              <label className="comment"><strong>Any comments or suggestions</strong></label>
-              {/* multi-line text input control */}
-              <textarea
-                name="comment"
-                id="comment"
-                placeholder="Enter your comment here"
-              />
-            </div>
+            
             {/* Multi-line Text Input Control */}
             <button type="submit" value="submit">
               <strong>Submit</strong>

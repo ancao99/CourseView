@@ -39,6 +39,27 @@ CREATE TABLE `course`
   `term` VARCHAR(255),
   `department` VARCHAR(255),
 );
+
+CREATE TABLE `app_feedback`
+(
+  `appReviewID` INT AUTO_INCREMENT,
+  `userID` INT,
+  `name` VARCHAR(100),
+  `role` VARCHAR(100),
+  `type` VARCHAR(200),
+  `comment` TEXT,
+  `recommed` VARCHAR(50),
+  PRIMARY KEY (`appReviewID`),
+  FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
+);
+INSERT INTO `app_feedback` (`userID`, `name`, `role`, `type`, `comment`, `recommed`)
+  VALUES (14, 'John Doe', 'Student', 'Feature Request', 'I suggest adding a chat feature to the platform.', 'Yes');
+  
+INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) 
+  VALUES ('1', '0', '0', '0', '1');
+
+
+
 CREATE TABLE `review`
 (
   `reviewID` INT AUTO_INCREMENT,
@@ -51,6 +72,6 @@ CREATE TABLE `review`
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
 
-INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) VALUES ('1', '0', '0', '0', '1');
 
-INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');
+INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) 
+  VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');

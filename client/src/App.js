@@ -24,6 +24,7 @@ import { AdminUser } from './admin/adminUser/';
 import { AdminUpdateUser } from './admin/adminUser/adminUpdateUser';
 import { AdminDepartment } from './admin/adminDepartment/';
 import { AdminUpdateDepartment } from './admin/adminDepartment/adminUpdateDepartment';
+import { AdminFeedback } from "./admin/adminFeedback";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
   {
     path: "adminUser",
     element: <AdminUser />,
+  },
+  {
+    path: "adminFeedback",
+    element: <AdminFeedback />,
   },
   {
     path: "adminUpdateUser/:userID",
