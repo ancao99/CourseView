@@ -20,11 +20,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
     "react-router-dom": "^6.21.3",
-<<<<<<< HEAD:client/package.json
-    "react-scripts": "^3.0.1",
-=======
     "react-scripts": "^5.0.1",
->>>>>>> main:CSC-SWE-Team11CourseView/client/package.json
     "react-slick": "^0.30.1",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"

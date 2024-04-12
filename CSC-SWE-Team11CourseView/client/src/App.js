@@ -14,8 +14,6 @@ import { Home } from "./pages/home/";
 import { Login } from "./pages/login";
 import { AboutUs } from "./pages/about-us";
 import { Courses } from "./pages/courses";
-<<<<<<< HEAD
-=======
 import { Profile } from "./pages/profile";
 
 //ADMIN
@@ -26,7 +24,6 @@ import { AdminTerms } from './admin/adminTerms/';
 import { AdminUpdateTerms } from './admin/adminTerms/adminUpdateTerms';
 import { AdminDepartment } from './admin/adminDepartment/';
 import { AdminUpdateDepartment } from './admin/adminDepartment/adminUpdateDepartment';
->>>>>>> an_s_main
 
 const router = createBrowserRouter([
   {
@@ -55,15 +52,6 @@ const router = createBrowserRouter([
             path: "login",
             element: <Login />,
           },
-<<<<<<< HEAD
-          
-
-        
-        ],
-      },
-    ]
-  },
-=======
           {
             path: "profile",
             element: <Profile />,
@@ -101,7 +89,6 @@ const router = createBrowserRouter([
     path: "adminUpdateDepartment/:departmentID",
     element: <AdminUpdateDepartment />,
   },
->>>>>>> an_s_main
 ]);
 
 function App() {
