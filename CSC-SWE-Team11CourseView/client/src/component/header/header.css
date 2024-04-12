@@ -248,8 +248,6 @@ button and Checkbox */
 
 .feedback button:hover::before {
   transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
-<<<<<<< HEAD
-=======
 }
 /* link to profile and setting */
 
@@ -283,5 +281,4 @@ button and Checkbox */
 }
 .header-container .account-link .link a:hover {
   color: #0015ff; /* Change color on hover */
->>>>>>> an_s_main
 }

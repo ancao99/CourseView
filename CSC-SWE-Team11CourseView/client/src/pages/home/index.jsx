@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { useState, useRef, useEffect } from 'react';
 import './home.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +10,7 @@ export const Home = () => {
     const navigate = useNavigate();
     
     const handleCourseButtonClick = () => {
-        navigate('/courses');
+        navigate('/courses');``
     };
     const handleLoginButtonClick = () => {
         navigate('/login');
@@ -22,11 +23,7 @@ export const Home = () => {
                 <div className='welcome'>
                     <h1 className='brand-name'><strong>CourseView</strong></h1>
                     <button onClick={handleCourseButtonClick} type="button" className="btn btn-primary float-end" >
-<<<<<<< HEAD
-                        Click here to explore The Course
-=======
                     &#160;Click here to explore ... &#160;
->>>>>>> an_s_main
                     </button>
                 </div>
 

@@ -76,24 +76,24 @@ export function Header() {
     }
   };
 
-  const handleLogOut = async () => {
-    try {
-      const data = { nothing: "nothing" };
-      const respond = await ClientAPI.post("logout", data);
-      //console.log("From HeaderLogOut.jsx: ", respond.data);
-      if (respond.data === "Log out") {
-        Cookies.remove("userID");
-        Cookies.remove("isAdmin");
-        Cookies.remove("access_token");
-      }
-      alert("Log Out success.")
-      navigate("/");
-    }
-    catch (err) {
-      //console.log("From HeaderLogOut.jsx: ", err);
-      alert("Log Out got Error.")
-    }
-  };
+  // const handleLogOut = async () => {
+  //   try {
+  //     const data = { nothing: "nothing" };
+  //     const respond = await ClientAPI.post("logout", data);
+  //     //console.log("From HeaderLogOut.jsx: ", respond.data);
+  //     if (respond.data === "Log out") {
+  //       Cookies.remove("userID");
+  //       Cookies.remove("isAdmin");
+  //       Cookies.remove("access_token");
+  //     }
+  //     alert("Log Out success.")
+  //     navigate("/");
+  //   }
+  //   catch (err) {
+  //     //console.log("From HeaderLogOut.jsx: ", err);
+  //     alert("Log Out got Error.")
+  //   }
+  // };
 
   return (
     <header className="header-container">
@@ -111,31 +111,12 @@ export function Header() {
           <button onClick={handleCourseButtonClick}><img src="search.png" style={{ width: '50px', height: '50px' }} alt="place holder course"></img><div className='image-info'>&#160;Courses&#160;</div></button>
         </div>
 
-<<<<<<< HEAD
-        <div className='nav-link'>
-          <button onClick={handleCourseButtonClick}><img src="search.png" style={{ width: '50px', height: '50px' }} alt="place holder course"></img><div className='image-info'>Courses</div></button>
-        </div>
-
-=======
         
         {Cookies.get("userID") && (
->>>>>>> an_s_main
         <div className="nav-link">
           <button onClick={handleFeedBackButtonClick}><img src="feedback.png" style={{ width: '50px', height: '50px' }} alt="Feedback"></img><div className='image-info'>&#160;FeedBack&#160;</div></button>
         </div>)}
         <div className="nav-link">
-<<<<<<< HEAD
-          <button onClick={handleFeedBackButtonClick}><img src="feedback.png" style={{ width: '50px', height: '50px' }} alt="Feedback"></img><div className='image-info'>FeedBack</div></button>
-        </div>
-        <div className="nav-link">
-          <button onClick={handleLoginButtonClick}><img src="login_icon.png" style={{ width: '50px', height: '50px' }} alt="Login"></img><div className='image-info'>Account</div></button>
-        </div>
-        {Cookies.get("userID") && (
-          <div className="nav-link">
-            <button onClick={handleLogOut}><img src="logout.png" style={{ width: '50px', height: '50px' }} alt="Logout"></img><div className='image-info'>Logout</div></button>
-          </div>
-        )}
-=======
           <button onClick={handleLoginButtonClick}><img src="login_icon.png" style={{ width: '50px', height: '50px' }} alt="Login"></img>
           {Cookies.get("userID") === undefined ? (
           <div className='image-info'>&#160;Account&#160;</div>
@@ -163,7 +144,6 @@ export function Header() {
           )}
           </button>
         </div>
->>>>>>> an_s_main
 
       </div>
       {showFeedbackForm && (
