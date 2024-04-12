@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import { studentFeedbackTest } from './stuFeedback_array';
 
 const CourseModal = ({selectedCourse }) =>{
+  
   const [ratings, setRatings] = useState({
     overall : '',
     courseContent: '',
@@ -13,6 +15,7 @@ const CourseModal = ({selectedCourse }) =>{
     orgStruct: '',
     relevancePract: ''
   });
+  
 
   //add function to get avg feedback table / array
   //for now it does nothing
@@ -31,6 +34,7 @@ const CourseModal = ({selectedCourse }) =>{
   };
 
   // Update ratings when selected course changes
+  
   useEffect(() => {
     if (selectedCourse) {
       // Fetch feedback data for the selected course
@@ -40,9 +44,34 @@ const CourseModal = ({selectedCourse }) =>{
       const newRatings = assignValue(feedbackData);
 
       // Update ratings state
-      setRatings(newRatings);
+      //setRatings(newRatings);
     }
   }, [selectedCourse]);
+  
+  const calculateMeanRating = (content, environment, assignments, interaction, feedback, organization, relevance) => {
+    const ratings = [content, environment, assignments, interaction, feedback, organization, relevance];
+    
+    let total = 0;
+    
+    for (const key in ratings) {
+      total += ratings[key];
+    }
+    console.log('Overall', Math.round( total / 7));
+    return Math.round( total / 7);
+  };
+
+  //The studentFeedbackTest array is temporary, it will be replaced with the array that contains data form teh student feedback table from the database
+  const filteredFeedback = selectedCourse
+  ? studentFeedbackTest
+      .filter((feedback) => feedback.crn === selectedCourse.crn)
+      .map((feedback, index) => (
+        <div key={index} className="feedback-comment">
+          <h4>{feedback.student}: </h4>
+          <Rating name="read-only" value={calculateMeanRating(feedback.content,feedback.assignments,feedback.environment,feedback.interaction,feedback.feedback,feedback.organization,feedback.relevance)} readOnly />
+          <p>{feedback.free_form}</p>
+        </div>
+      ))
+  : null;
 
     return(
         <div class="modal fade" id="viewCourseFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewCourseFeedback" aria-hidden="true">
@@ -77,18 +106,7 @@ const CourseModal = ({selectedCourse }) =>{
                         {/* Add more details as needed */}
                       </>
                     )}
-                    <div className="feedback-comment">
-                      <p>Student 1: </p>
-                      <Rating name="read-only" value={4} readOnly />
-                    </div>
-                    <div className="feedback-comment">
-                      <p>Student 2: </p>
-                      <Rating name="read-only" value={4} readOnly />
-                    </div>
-                    <div className="feedback-comment">
-                      <p>Student 3: </p>
-                      <Rating name="read-only" value={4} readOnly />
-                    </div>
+                    <div>{filteredFeedback}</div>
                   </div>
                   <div className="col-md-4">
                     <h5>Feedback Rating:</h5>

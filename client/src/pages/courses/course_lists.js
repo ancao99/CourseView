@@ -9,6 +9,7 @@ import SearchBar from './search';
 import CourseModal from './courseModal';
 import CourseFeedbackModal from './courseFeedbackModal';
 import {CourseData} from './courses_array';
+import { studentFeedbackTest } from './stuFeedback_array';
 import './courses.css';
 
 //This function returns data from the database(course table)
@@ -101,10 +102,33 @@ const CourseList = () => {
     //TODO: prepare data to send to database
     const handleSubmitFeedback = (ratings) => {
       // TODO: Handle submission logic here, such as sending the data to a server
-      console.log('Received ratings:', ratings);
       
+      console.log('Received ratings:', ratings);
+      // Calculate the mean rating
+     
+      
+      // Prepare data to append to studentFeedbackTest array
+      const feedbackData = {
+        crn: selectedCourse.crn,
+        student: ratings[2] ? 'Anonymous' : 'Student Name', // Replace with actual student name
+        //rating: meanRating,
+        content: ratings[1]['content'],
+        environment: ratings[1]['environment'],
+        assignments: ratings[1]['assignments'],
+        interaction: ratings[1]['interaction'],
+        feedback: ratings[1]['feedback'],
+        organization: ratings[1]['organization'],	
+        relevance: ratings[1]['relevance'],
+        free_form: ratings[1]['free_form'],
+      };
+      
+
+      //This is temporary; push feedbackData to actually student feedback table.
+      studentFeedbackTest.push(feedbackData);
     };
+
     
+
     return (
         <div className="container">
           <div className="row">

@@ -135,3 +135,14 @@
 .feedback-toolbar .feedback-freeform{
     color:black;
 }
+
+.form-check-input[type="checkbox"].form-check-input-lg {
+    width: 3rem;
+    height: 1.5rem;
+}
+
+.form-check-label.form-check-label-lg {
+    font-size: 1.25rem; 
+    margin-left: 1rem; 
+}
+
