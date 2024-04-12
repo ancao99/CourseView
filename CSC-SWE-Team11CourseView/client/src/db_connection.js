@@ -5,7 +5,7 @@ const mysql = require('mysql');
 //[username]codd.cs.gsu.edu
 //password
 
-//codd my sql 
+//codd my sql t
 //username: student id
 //passowrd: student id 
 
