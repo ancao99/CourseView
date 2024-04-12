@@ -1,5 +1,4 @@
 USE `courseview`;
-
 CREATE TABLE `user`
 (
   `userID` INT NOT NULL AUTO_INCREMENT,
@@ -9,14 +8,13 @@ CREATE TABLE `user`
   `isAdmin` INT,
   PRIMARY KEY (`userID`)
 );
-ALTER TABLE `user`(
-  ADD phone VARCHAR(20) DEFAULT 'N/A',
-  ADD department VARCHAR(50) DEFAULT 'your department',
-  ADD minor VARCHAR(50) DEFAULT 'minor',
-  ADD school VARCHAR(50) DEFAULT 'school year',
-  ADD major VARCHAR(50) DEFAULT 'major',
-);
 
+ALTER TABLE `user`
+ADD COLUMN phone VARCHAR(20) DEFAULT 'N/A',
+ADD COLUMN department VARCHAR(50) DEFAULT 'your department',
+ADD COLUMN minor VARCHAR(50) DEFAULT 'minor',
+ADD COLUMN school VARCHAR(50) DEFAULT 'school year',
+ADD COLUMN major VARCHAR(50) DEFAULT 'major';
 
 
 
@@ -32,12 +30,15 @@ CREATE TABLE `userToken`
 CREATE TABLE `course`
 (
   `courseID` INT AUTO_INCREMENT,
-  `CRN` INT,
-  `courseAbb` VARCHAR(255),
+  `crn` INT,
+  `subject` VARCHAR(255),
   `courseNumber` INT,
+  `section` INT,
+  `hours` VARCHAR(255),
+  `title` VARCHAR(255),
   `professor` VARCHAR(255),
-  `term` VARCHAR(255),
-  `department` VARCHAR(255),
+  `schedule_type` VARCHAR(255),
+   PRIMARY KEY (`courseID`)
 );
 
 CREATE TABLE `app_feedback`
@@ -63,15 +64,24 @@ INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`)
 CREATE TABLE `review`
 (
   `reviewID` INT AUTO_INCREMENT,
-  `coursesID` INT,
+  `courseID` INT,
   `userID` INT,
   `comment` TEXT,
   `reviewDate` DATETIME,
   PRIMARY KEY (`reviewID`),
-  FOREIGN KEY (`coursesID`) REFERENCES `courses`(`coursesID`),
+  FOREIGN KEY (`courseID`) REFERENCES `course`(`courseID`),
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
 
+<<<<<<< HEAD
 
 INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) 
   VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');
+=======
+
+INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) VALUES ('1', '0', '0', '0', '1');
+
+INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');
+
+
+>>>>>>> 3787783061192a71d04df6d1f3ccf394c8041729

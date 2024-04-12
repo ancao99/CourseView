@@ -11,6 +11,7 @@ import path from "path";
 import Authentication from "./behavior/authentication.js";
 import Profile from "./behavior/profile.js";
 import User from "./behavior/user.js";
+import Courses from "./behavior/courses.js";
 
 // Server port
 var app = express()
@@ -91,7 +92,7 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             User.deleteClient(data.entry, res);
             break;
         case "getClient":
-            User.getClient(key,data.entry, res);
+            User.getClient(key, data.entry, res);
             break;
         case "updateClient":
             User.updateClient(data.entry, res);
@@ -99,6 +100,18 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
         case "getClientDetail":
             console.log("i got call")
             User.getClientDetail(key, data.entry, res);
+            break;
+
+        //courses
+        case "getCourses":
+            Courses.getCourses(key, data.entry, res);
+            break;
+        case "deleteCourses":
+            Courses.deleteCourses(data.entry, res);
+            break;
+        case "addCourses":
+            Courses.addCourses(data.entry, res);
+            console.log(data.entry)
             break;
 
         default:
