@@ -49,6 +49,11 @@
     width: 100%;
 }
 
+.scroll-div{
+    overflow-y: auto;
+    max-height: 500px;
+}
+
 .course-item {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -129,3 +134,14 @@
 .feedback-toolbar .feedback-freeform{
     color:black;
 }
+
+.form-check-input[type="checkbox"].form-check-input-lg {
+    width: 3rem;
+    height: 1.5rem;
+}
+
+.form-check-label.form-check-label-lg {
+    font-size: 1.25rem; 
+    margin-left: 1rem; 
+}
+

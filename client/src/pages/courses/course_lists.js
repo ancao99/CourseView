@@ -9,10 +9,26 @@ import SearchBar from './search';
 import CourseModal from './courseModal';
 import CourseFeedbackModal from './courseFeedbackModal';
 import {CourseData} from './courses_array';
+import { studentFeedbackTest } from './stuFeedback_array';
 import './courses.css';
 
+//This function returns data from the database(course table)
+const loadCourses = () =>{
+  //1 There should be a var that takes in data from database(course table)
+  //2 The data should be from a return call from a function that returns course table data
+  //3 If that data is already in the form of an array/list whose indexes are array/list then leave it alone. ex: [[],[],...]
+  //4 Else use some loop or function that formats them as such here or in the function referred to in comment 2
+
+
+  //Edit the return so that it returns var with data from course table
+  //Currently CourseData is filler array from course_array.js
+  return CourseData;
+}
+
+
+//Contains courses from A - E
 //Left off at executive mba
-const courses = CourseData;
+const courses = loadCourses();
 
 const CourseList = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -83,12 +99,36 @@ const CourseList = () => {
       setSelectedCourse(course);
     };
 
+    //TODO: prepare data to send to database
     const handleSubmitFeedback = (ratings) => {
-      // Handle submission logic here, such as sending the data to a server
-      console.log('Received ratings:', ratings);
+      // TODO: Handle submission logic here, such as sending the data to a server
       
+      console.log('Received ratings:', ratings);
+      // Calculate the mean rating
+     
+      
+      // Prepare data to append to studentFeedbackTest array
+      const feedbackData = {
+        crn: selectedCourse.crn,
+        student: ratings[2] ? 'Anonymous' : 'Student Name', // Replace with actual student name
+        //rating: meanRating,
+        content: ratings[1]['content'],
+        environment: ratings[1]['environment'],
+        assignments: ratings[1]['assignments'],
+        interaction: ratings[1]['interaction'],
+        feedback: ratings[1]['feedback'],
+        organization: ratings[1]['organization'],	
+        relevance: ratings[1]['relevance'],
+        free_form: ratings[1]['free_form'],
+      };
+      
+
+      //This is temporary; push feedbackData to actually student feedback table.
+      studentFeedbackTest.push(feedbackData);
     };
+
     
+
     return (
         <div className="container">
           <div className="row">
@@ -98,7 +138,7 @@ const CourseList = () => {
             <div className="col">
               <div className="course-list">
                 {filteredCourses.length > 0 ? (
-                  <div className='row'>
+                  <div className='row scroll-div'>
                     <h1>Course List</h1>
                     {filteredCourses.map(([crn, subject, courseNumber, section, hours, title, professor, schedule_type]) => (
                       <div key={crn} className="course-item">
