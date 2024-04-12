@@ -7,12 +7,12 @@ import ClientAPI from "../../api/clientAPI";
 import "./adminFeedback.css";
 
 export const AdminFeedback = () => {
-    const [clients, setClients] = useState([]);
+    const [feedbacks, setFeedback] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const clientPerPage = 10;
-    const indexOfLastClient = currentPage * clientPerPage;
-    const indexOfFirstClient = indexOfLastClient - clientPerPage;
-    const currentClient = clients.slice(indexOfFirstClient, indexOfLastClient);
+    const feedbackPerPage = 10;
+    const indexOfLastFeedback = currentPage * feedbackPerPage;
+    const indexOfFirstFeedback = indexOfLastFeedback - feedbackPerPage;
+    const current = clients.slice(indexOfFirstClient, indexOfLastClient);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -86,10 +86,10 @@ export const AdminFeedback = () => {
             <main className="content-main-product">
                 <div className="head-title">
                     <div className="adminLeft">
-                        <h1>User</h1>
+                        <h1>Feedback</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">User</a>
+                                <a href="#">Feedback</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
