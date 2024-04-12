@@ -98,6 +98,7 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             User.updateClient(data.entry, res);
             break;
         case "getClientDetail":
+            console.log("i got call")
             User.getClientDetail(key, data.entry, res);
             break;
 
@@ -108,8 +109,7 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
         case "deleteCourses":
             Courses.deleteCourses(data.entry, res);
             break;
-
-
+            
         default:
             res.status(400).json("Bad Request");
             break;

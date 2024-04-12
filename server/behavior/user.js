@@ -27,9 +27,10 @@ export default class User {
         }
 
     }
-    static getUserDetail(key, inputD, res) {
+    static getClientDetail(key, inputD, res) {
         try {
             const userID = inputD.userID;
+            console.log(userID);
             if (!userID) {
                 return res.status(400).json("User ID is missing.");
             }

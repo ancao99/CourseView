@@ -19,7 +19,7 @@ export default class ClientAPI{
             case "getClient":
             case "updateClient":
             case "deleteClient":
-            case "getUserDetail":
+            case "getClientDetail":
 
             //course
             case "getCourses":
@@ -45,6 +45,7 @@ export default class ClientAPI{
             case "updateOrderStatus":*/
                 ////console.log("data send: ",data);
                 formData = MySecurity.encryptedPackage(action, data, selectedImage);  
+                console.log(formData)
                 break;
             default:
                 //console.log("Bad request");

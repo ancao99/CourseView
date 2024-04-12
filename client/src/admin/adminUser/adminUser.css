@@ -37,8 +37,8 @@
     box-sizing: border-box
 }
 .adminPage .updateProduct {
-    margin: 50px auto;
-    padding: 30px;
+    margin: 0 auto;
+    padding: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
@@ -48,7 +48,7 @@
 .form-container {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two columns */
-    grid-gap: 20px; /* Gap between grid items */
+    grid-gap: 20px 40px; /* Gap between grid items */
 }
 
 .form-group {
@@ -61,6 +61,9 @@
     text-align: left;
 }
 
-.adminPage .button{
-    margin-right:50px;
+.adminPage button{
+    margin-right:100px;
+}
+.adminPage label{
+    padding-bottom: 5px;
 }

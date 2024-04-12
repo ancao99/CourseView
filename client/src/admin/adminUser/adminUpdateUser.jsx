@@ -11,57 +11,76 @@ import MySecurity from "../../api/mySecurity";
 export const AdminUpdateUser = () => {
     const { userID } = useParams();
     const navigate = useNavigate();
-    const [inputValues, setInputValues] = useState({
-        fullName: '',
-        email: '',
-        phone: '',
-        department: '',
-        major: '',
-        minor: '',
-        school: ''
-    });
+    const [userData, setUserData] = useState(null);
+    const [inputValues, setInputValues] = useState({});
 
     useEffect(() => {
-        async function fetchUserData() {
-            try {
-                const data = {
-                    userID: userID,
-                };
-                const response = await ClientAPI.post("getUserDetail", data);
-                const userData = MySecurity.decryptedData(response.data);
-                setInputValues(userData);
-            }
-            catch (err) {
-                console.error("Failed to fetch user data:", err);
-            }
-        }
-        fetchUserData();
-    }, [userID]);
+        if (Cookies.get("isAdmin") !== '1')
+            navigate("/");
+
+    }, []);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setInputValues(prevValues => ({
+        setInputValues((prevValues) => ({
             ...prevValues,
             [name]: value,
         }));
     };
 
-    const handleCancelEdit = () => {
+    const handleCancelEdit = (event) => {
+        event.preventDefault();
         navigate("/adminUser");
     };
 
+    // update product
     const handleEditUser = async (event) => {
         event.preventDefault();
+        // Submit change
         try {
-            const response = await ClientAPI.post("updateUser", inputValues);
-            if (response.data !== null && response.data !== undefined) {
-                navigate("/adminUser");
+            let data = {
+                ...inputValues,
+            }
+            const respond = await ClientAPI.post("updateClient", data);
+            if (respond.data !== null && respond.data !== undefined) {
+                //alert("Edited: ")
+                navigate("/adminUser")
             }
         }
         catch (err) {
-            console.error("Failed to edit user:", err);
+            alert("Can not Edit", err)
         }
     };
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const data = {
+                    userID: userID
+                };
+                console.log({data})
+                // get information
+                const respond = await ClientAPI.post("getClientDetail", data);
+                console.log({respond})
+                let userData = MySecurity.decryptedData(respond.data);
+                setInputValues({
+                    userID: userID,
+                    fullName: userData.fullName,
+                    email: userData.email,
+                    phone: userData.phone,
+                    department: userData.department,
+                    major: userData.major,
+                    minor: userData.minor,
+                    school: userData.school,
+                });
+            }
+            catch (err) {
+                alert("Can not Fetch", err)
+                console.log({err})
+            }
+        }
+        fetchData();
+    }, []);
 
 
     return (
