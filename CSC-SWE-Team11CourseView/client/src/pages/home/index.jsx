@@ -10,7 +10,7 @@ export const Home = () => {
     const navigate = useNavigate();
     
     const handleCourseButtonClick = () => {
-        navigate('/courses');``
+        navigate('/courses');
     };
     const handleLoginButtonClick = () => {
         navigate('/login');
