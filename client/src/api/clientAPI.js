@@ -25,6 +25,14 @@ export default class ClientAPI {
             case "getCourses":
             case "deleteCourses":
             case "addCourses":
+            case "updateCourses":
+            case "getCoursesDetail":
+
+            //feedback
+            case "getFeedback":
+            case "deleteFeedback":
+            case "updateFeedback":
+
 
                 /* product
                 case "getProduct":                

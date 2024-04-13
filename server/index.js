@@ -12,6 +12,7 @@ import Authentication from "./behavior/authentication.js";
 import Profile from "./behavior/profile.js";
 import User from "./behavior/user.js";
 import Courses from "./behavior/courses.js";
+import Feedback from "./behavior/feedback.js";
 
 // Server port
 var app = express()
@@ -111,8 +112,25 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             break;
         case "addCourses":
             Courses.addCourses(data.entry, res);
+            break;
+        case "updateCourses":
+            Courses.updateCourses(data.entry, res);
+            break;
+        case "getCoursesDetail":
+            Courses.getCoursesDetail(key, data.entry, res);
+            break;
+        //feedback
+        case "getFeedback":
+            Feedback.getFeedback(key, data.entry, res);
+            break;
+        case "deleteFeedback":
+            Feedback.deleteFeedback(data.entry, res);
+            break;
+        case "updateFeedback":
+            Feedback.updateFeedback(data.entry, res);
             console.log(data.entry)
             break;
+
 
         default:
             res.status(400).json("Bad Request");

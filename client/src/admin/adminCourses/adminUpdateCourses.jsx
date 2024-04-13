@@ -9,39 +9,15 @@ import ClientAPI from "../../api/clientAPI";
 import MySecurity from "../../api/mySecurity";
 
 export const AdminUpdateCourses = () => {
-    const { coursesID } = useParams();
+    const { courseID } = useParams();
     const navigate = useNavigate();
-    const [termsData, setTermsData] = useState([]);
-    const [departmentData, setDepartmentData] = useState([]);
+    const [courseData, setCourseData] = useState(null);
+
     const [inputValues, setInputValues] = useState({});
 
     useEffect(() => {
         if (Cookies.get("isAdmin") !== '1')
             navigate("/");
-
-        async function fetchData() {
-            try {
-                const data = { coursesID: coursesID };
-
-                const respond1 = await ClientAPI.post("getTerms", data);
-                setTermsData(MySecurity.decryptedData(respond1.data));
-
-                const respond2 = await ClientAPI.post("getDepartment", data);
-                setDepartmentData(MySecurity.decryptedData(respond2.data));
-
-                const respond3 = await ClientAPI.post("getCoursesDetail", data);
-                const coursesData = MySecurity.decryptedData(respond3.data);
-                setInputValues({
-                    coursesID: coursesID,
-                    termsID: coursesData.termsID,
-                    departmentID: coursesData.departmentID,
-                });
-            }
-            catch (err) {
-                alert("Can not Fetch", err)
-            }
-        }
-        fetchData();
     }, []);
 
     const handleInputChange = (event) => {
@@ -51,6 +27,7 @@ export const AdminUpdateCourses = () => {
             [name]: value,
         }));
     };
+    
 
     const handleCancelEdit = (event) => {
         event.preventDefault();
@@ -59,16 +36,52 @@ export const AdminUpdateCourses = () => {
 
     const handleEditCourses = async (event) => {
         event.preventDefault();
+        // Submit change
         try {
-            const respond = await ClientAPI.post("updateCourses", inputValues);
+            let data = {
+                ...inputValues,
+            }
+            const respond = await ClientAPI.post("updateCourses", data);
             if (respond.data !== null && respond.data !== undefined) {
-                navigate("/adminCourses");
+                //alert("Edited: ")
+                navigate("/adminCourses")
             }
         }
         catch (err) {
             alert("Can not Edit", err)
         }
+
     };
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const data = {
+                    courseID: courseID,
+                };
+                // get information
+                const respond = await ClientAPI.post("getCoursesDetail", data);
+                let courseData = MySecurity.decryptedData(respond.data);
+                setInputValues({
+                    courseID: courseID,
+                    crn: courseData.crn,
+                    subject: courseData.subject,
+                    courseNumber: courseData.courseNumber,
+                    section: courseData.section,
+                    hours: courseData.hours,
+                    title: courseData.title,
+                    professor: courseData.professor,
+                    schedule_type: courseData.schedule_type,
+                });
+            }
+            catch (err) {
+                alert("Can not Fetch", err)
+            }
+        }
+        fetchData();
+    }, []);
+    
+
 
     return (
         <section id="content" className='adminPage'>
@@ -93,31 +106,99 @@ export const AdminUpdateCourses = () => {
                         </ul>
                     </div>
                 </div>
-                {(termsData.length > 0 && departmentData.length > 0) ? (
-                    <div className="updateProduct">
-                        <form onSubmit={handleEditCourses} encType="multipart/form-data">
-                            <label htmlFor="termsID">Select Terms:</label>
-                            <select id="termsID" name="termsID" value={inputValues.termsID} onChange={handleInputChange}>
-                                {termsData.map(row => (
-                                    <option key={row.id} value={row.id}>{row.name}</option>
-                                ))}
-                            </select><br />
-                            <label htmlFor="departmentID">Select Departments:</label>
-                            <select id="departmentID" name="departmentID" value={inputValues.departmentID} onChange={handleInputChange}>
-                                {departmentData.map(row => (
-                                    <option key={row.id} value={row.id}>{row.name}</option>
-                                ))}
-                            </select><br />
+                <div className="updateProduct">
+                    <form onSubmit={handleEditCourses} encType="multipart/form-data">
+                        <label htmlFor="name">CRN:</label>
+                        <input
+                            type="text"
+                            id="crn"
+                            name="crn"
+                            value={inputValues.crn}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
 
-                            <button type="button" name="cancelEditProduct" onClick={handleCancelEdit} style={{ marginRight: '10px' }}>Cancel</button>
-                            <button type="submit" name="editProduct">Edit Item</button>
-                        </form>
-                    </div>
-                ) : (
-                    <div className="updateProduct">
-                        <p>Loading...</p>
-                    </div>
-                )}
+                        <label htmlFor="name">Subject:</label>
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            value={inputValues.subject}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <label htmlFor="name">Course Number:</label>
+                        <input
+                            type="text"
+                            id="courseNumber"
+                            name="courseNumber"
+                            value={inputValues.courseNumber}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <label htmlFor="name">Section:</label>
+                        <input
+                            type="text"
+                            id="section"
+                            name="section"
+                            value={inputValues.section}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <label htmlFor="name">Hours:</label>
+                        <input
+                            type="text"
+                            id="hours"
+                            name="hours"
+                            value={inputValues.hours}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <label htmlFor="name">Title:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            value={inputValues.title}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <label htmlFor="name">Professor:</label>
+                        <input
+                            type="text"
+                            id="professor"
+                            name="professor"
+                            value={inputValues.professor}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <label htmlFor="name">Schedule Type:</label>
+                        <input
+                            type="text"
+                            id="schedule_type"
+                            name="schedule_type"
+                            value={inputValues.schedule_type}
+                            onChange={handleInputChange}
+                            required
+                        /><br />
+
+                        <button
+                            type="button"
+                            name="cancelEditTerm"
+                            onClick={handleCancelEdit}
+                            style={{ marginRight: '10px' }}
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" name="editTerm">Save</button>
+                    </form>
+                </div>
             </main>
         </section>
     );

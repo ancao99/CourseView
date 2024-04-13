@@ -62,6 +62,8 @@ CREATE TABLE `feedback`
   PRIMARY KEY (`appReviewID`),
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
+ALTER TABLE feedback
+ADD edit VARCHAR(500) DEFAULT 'default_value';
 
 INSERT INTO `app_feedback` (`userID`, `name`, `role`, `type`, `comment`, `recommed`)
   VALUES (14, 'John Doe', 'Student', 'Feature Request', 'I suggest adding a chat feature to the platform.', 'Yes');
