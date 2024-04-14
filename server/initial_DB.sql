@@ -9,13 +9,13 @@ CREATE TABLE `user`
   `isAdmin` INT,
   PRIMARY KEY (`userID`)
 );
-ALTER TABLE `user`(
-  ADD phone VARCHAR(20) DEFAULT 'N/A',
-  ADD department VARCHAR(50) DEFAULT 'your department',
-  ADD minor VARCHAR(50) DEFAULT 'minor',
-  ADD school VARCHAR(50) DEFAULT 'school year',
-  ADD major VARCHAR(50) DEFAULT 'major',
-);
+
+ALTER TABLE `user`
+  ADD COLUMN phone VARCHAR(20) DEFAULT 'N/A',
+  ADD COLUMN department VARCHAR(50) DEFAULT 'your department',
+  ADD COLUMN minor VARCHAR(50) DEFAULT 'minor',
+  ADD COLUMN school VARCHAR(50) DEFAULT 'school year',
+  ADD COLUMN major VARCHAR(50) DEFAULT 'major';
 
 CREATE TABLE `userToken`
 (
@@ -29,7 +29,9 @@ CREATE TABLE `userToken`
 
 INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) 
   VALUES ('1', '0', '0', '0', '1');
-
+  
+INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) 
+  VALUES ('anonymous', 'anonymous@gmail.com', 'anonymous', '2');
 
 INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) 
   VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');
@@ -59,15 +61,14 @@ CREATE TABLE `feedback`
   `type` VARCHAR(200),
   `comment` TEXT,
   `recommed` VARCHAR(50),
-  PRIMARY KEY (`appReviewID`),
+PRIMARY KEY (`feedbackID`),
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
-ALTER TABLE feedback
-ADD edit VARCHAR(500) DEFAULT 'default_value';
+ALTER TABLE `feedback`
+  ADD COLUMN edit VARCHAR(500) DEFAULT 'default_value';
 
-INSERT INTO `app_feedback` (`userID`, `name`, `role`, `type`, `comment`, `recommed`)
-  VALUES (14, 'John Doe', 'Student', 'Feature Request', 'I suggest adding a chat feature to the platform.', 'Yes');
-
+INSERT INTO `feedback` (`userID`, `name`, `role`, `type`, `comment`, `recommed`)
+  VALUES (1, 'John Doe', 'Student', 'Feature Request', 'I suggest adding a chat feature to the platform.', 'Yes');
 
 
 CREATE TABLE `review`

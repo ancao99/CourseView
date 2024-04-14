@@ -219,7 +219,6 @@ export const AdminFeedback = () => {
                                         </button>
                                     </form>
                                 </td>
-
                             </tr>
                         ))}
                     </tbody>

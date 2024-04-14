@@ -1,7 +1,7 @@
 import { db } from "../db.js"
 import MySecurity from "./myServerSecurity.js";
 
-export default class review {
+export default class Review {
 
     static async getComments(key, inputD, res) {
         try {
@@ -10,7 +10,7 @@ export default class review {
     
                 const review = data.map(review => ({
                     id: review.reviewID,
-                    coursesID: review.coursesID,
+                    courseID: review.courseID,                    
                     userID: review.userID,
                     userFullName: review.userFullName, 
                     comment: review.comment,
@@ -50,18 +50,18 @@ export default class review {
     static async addComments(inputData, res) {
         try {
             // Extract data from the request body
-            const { coursesID, userID, comment, reviewDate } = inputData;
+            const { courseID, userID, comment, reviewDate } = inputData;
             
             // Validate input data
-            if (!coursesID || !userID || !comment || !reviewDate) {
+            if (!courseID || !userID || !comment || !reviewDate) {
                 throw new Error("Missing required fields.");
             }
 
             // Construct the SQL query to insert the comment into the database
-            const insertQuery = `INSERT INTO review (coursesID, userID, comment, reviewDate) VALUES (?, ?, ?, ?)`;
+            const insertQuery = `INSERT INTO review (courseID, userID, comment, reviewDate) VALUES (?, ?, ?, ?)`;
             
             // Execute the SQL query
-            db.execute(insertQuery, [coursesID, userID, comment, reviewDate], (err, data) => {
+            db.execute(insertQuery, [courseID, userID, comment, reviewDate], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);

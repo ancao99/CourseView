@@ -13,6 +13,7 @@ import Profile from "./behavior/profile.js";
 import User from "./behavior/user.js";
 import Courses from "./behavior/courses.js";
 import Feedback from "./behavior/feedback.js";
+import Review from "./behavior/review.js";
 
 // Server port
 var app = express()
@@ -126,6 +127,9 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             break;
         case "deleteFeedback":
             Feedback.deleteFeedback(data.entry, res);
+            break;
+        case "addFeedback":
+            Feedback.addFeedback(data.entry, res);
             break;
         case "updateFeedback":
             Feedback.updateFeedback(data.entry, res);

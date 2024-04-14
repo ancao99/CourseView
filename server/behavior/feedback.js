@@ -51,7 +51,7 @@ export default class feedback {
     static async addFeedback(inputData, res) {
         try {
             // Extract data from the request body
-            const { userID, role, type,comment,recommend,edit } = inputData;
+            const { userID, role, type,comment,recommend } = inputData;
             
             // Validate input data
             if ( !userID || !role || !type || !comment || !recommend) {
@@ -59,7 +59,7 @@ export default class feedback {
             }
 
             // Construct the SQL query to insert the comment into the database
-            const insertQuery = `INSERT INTO feedback (userID, role, type,comment,recommend) VALUES (?, ?, ?, ?,?)`;
+            const insertQuery = `INSERT INTO feedback (userID, role, type,comment,recommend,edit) VALUES (?, ?, ?, ?,?,?)`;
             
             // Execute the SQL query
             db.execute(insertQuery, [ userID, role, type,comment,recommend], (err, data) => {
@@ -73,31 +73,29 @@ export default class feedback {
             console.error("Error adding feedback:", error);
             return res.status(500).json("Failed to add feedback. " + error);
         }
-    }    
-
-    static getFeedbackDetail(key, inputD, res) {
+    }
+    static async updateFeedback(inputData, res) {
         try {
-            const feedbackID = inputD.feedbackID;
-            if (!feedbackID) {
-                return res.status(400).json("Feedback ID is missing.");
+            console.log('Received data:', inputData); // Log received data
+            const { feedbackID, edit } = inputData;
+            if (!feedbackID || !edit) {
+                throw new Error("Feedback ID or edit information is missing or undefined.");
             }
-
-            db.execute(`SELECT * FROM feedback WHERE feedbackID = ?`, [feedbackID], (err, data) => {
+    
+            // Execute SQL query to update the school field
+            const updateQuery = `UPDATE feedback SET edit = ? WHERE feedbackID = ?`;
+            db.execute(updateQuery, [feedbackID, edit], (err, data) => {
                 if (err) {
+                    console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
                 }
-
-                if (data.length === 0) {
-                    return res.status(404).json("Feedback not found.");
-                }
-
-                const feedbackData = data[0];
-                const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), feedbackData);
-                return res.status(200).json(encryptedData);
+                return res.status(200).json("Feedback's edit updated successfully.");
             });
-        } catch (error) {
-            console.error("Error getting feedback detail:", error);
-            return res.status(500).json("Failed to get feedback detail. " + error);
+        }
+        catch (error) {
+            console.error("Error updating feedback's edit:", error);
+            return res.status(500).json("Failed to update feedback's edit. " + error.message);
         }
     }
+    
 }
