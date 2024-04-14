@@ -3,9 +3,15 @@ import fs from "fs"
 import { CourseData } from "./courses_array.js";
 
 const dbConfig = {
+    /*
     host: "127.0.0.1",
     user: "root",
     password: "Hoangminh2345",
+    database: "courseview"
+*/
+    host: "127.0.0.1",
+    user: "taone",
+    password: "taothik",
     database: "courseview"
     
 }

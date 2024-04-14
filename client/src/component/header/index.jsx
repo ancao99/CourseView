@@ -85,22 +85,22 @@ export function Header() {
       </div>
       <div className="right-section">
         <div className="nav-link">
-          <button onClick={handleHomeButtonClick}><img src="home.png" style={{ width: '50px', height: '50px' }} alt="Home"></img><div className='image-info'>&#160;Home&#160;</div></button>
+          <button onClick={handleHomeButtonClick}><img src="/home.png" style={{ width: '50px', height: '50px' }} alt="Home"></img><div className='image-info'>&#160;Home&#160;</div></button>
         </div>
         <div className="nav-link">
-          <button onClick={handleAboutButtonClick}><img src="about.png" style={{ width: '50px', height: '50px' }} alt="About"></img><div className='image-info'>&#160;About&#160;</div></button>
+          <button onClick={handleAboutButtonClick}><img src="/about.png" style={{ width: '50px', height: '50px' }} alt="About"></img><div className='image-info'>&#160;About&#160;</div></button>
         </div>
         <div className='nav-link'>
-          <button onClick={handleCourseButtonClick}><img src="search.png" style={{ width: '50px', height: '50px' }} alt="place holder course"></img><div className='image-info'>&#160;Courses&#160;</div></button>
+          <button onClick={handleCourseButtonClick}><img src="/search.png" style={{ width: '50px', height: '50px' }} alt="place holder course"></img><div className='image-info'>&#160;Courses&#160;</div></button>
         </div>
 
         
         {Cookies.get("userID") && (
         <div className="nav-link">
-          <button onClick={handleFeedBackButtonClick}><img src="feedback.png" style={{ width: '50px', height: '50px' }} alt="Feedback"></img><div className='image-info'>&#160;FeedBack&#160;</div></button>
+          <button onClick={handleFeedBackButtonClick}><img src="/feedback.png" style={{ width: '50px', height: '50px' }} alt="Feedback"></img><div className='image-info'>&#160;FeedBack&#160;</div></button>
         </div>)}
         <div className="nav-link">
-          <button onClick={handleLoginButtonClick}><img src="login_icon.png" style={{ width: '50px', height: '50px' }} alt="Login"></img>
+          <button onClick={handleLoginButtonClick}><img src="/login_icon.png" style={{ width: '50px', height: '50px' }} alt="Login"></img>
           {Cookies.get("userID") === undefined ? (
           <div className='image-info'>&#160;Account&#160;</div>
           ):(

@@ -13,6 +13,8 @@ import Profile from "./behavior/profile.js";
 import User from "./behavior/user.js";
 import Courses from "./behavior/courses.js";
 import Feedback from "./behavior/feedback.js";
+import Review from "./behavior/review.js";
+
 
 // Server port
 var app = express()

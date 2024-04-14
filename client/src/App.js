@@ -14,7 +14,10 @@ import { Home } from "./pages/home/";
 import { Login } from "./pages/login";
 import { AboutUs } from "./pages/about-us";
 import { Courses } from "./pages/courses";
+import { CoursesDetails } from "./pages/courses-details/index";
 import { Profile } from "./pages/profile";
+import { EditComment } from "./pages/courses-details/edit-comment";
+
 
 //ADMIN
 import { AdminDashboard } from './admin/adminDashboard';
@@ -41,6 +44,14 @@ const router = createBrowserRouter([
           {
             path: "courses",
             element: <Courses />
+          },
+          {
+            path: "courses-details/:courseId",
+            element: <CoursesDetails />,
+          },
+          {
+            path: "edit-comment/:reviewID",
+            element: <EditComment />,
           },
           {
             path: "about-us",
@@ -84,7 +95,7 @@ const router = createBrowserRouter([
     path: "adminUpdateUser/:userID",
     element: <AdminUpdateUser />,
   },
-  
+
 
 ]);
 
