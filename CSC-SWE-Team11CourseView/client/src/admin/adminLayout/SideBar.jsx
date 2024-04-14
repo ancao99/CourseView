@@ -13,11 +13,16 @@ const Sidebar = ({ hidden }) => {
     { text: 'Dashboard', icon: '/admin-dashboard.png', href: '/adminDashboard' },
     { text: 'Courses', icon: '/admin-course.png', href: '/adminCourses' },
 <<<<<<< HEAD
+<<<<<<< HEAD
     { text: 'Users', icon: '/admin-user.png', href: '/adminUser' },
 =======
     { text: 'User', icon: '/admin-user.png', href: '/adminUser' },
     { text: 'Review', icon: '/admin-review.png', href: '/adminDepartment' },
 >>>>>>> 846aab61 (...)
+=======
+    { text: 'User', icon: '/admin-user.png', href: '/adminUser' },
+    { text: 'Review', icon: '/admin-review.png', href: '/adminDepartment' },
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
     { text: 'Feedback', icon: '/admin-feedback.png', href: '/adminFeedback' },
 
   ];

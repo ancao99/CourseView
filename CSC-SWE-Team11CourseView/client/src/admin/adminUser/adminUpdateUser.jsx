@@ -10,15 +10,21 @@ import MySecurity from "../../api/mySecurity";
 
 export const AdminUpdateUser = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const { userID } = useParams();
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
     const { termID } = useParams();
     const [termName, setTermName] = useState('');
     const navigate = useNavigate();
     const [termData, setTermData] = useState(null);
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
     const [inputValues, setInputValues] = useState({});
 
     useEffect(() => {
@@ -42,10 +48,14 @@ export const AdminUpdateUser = () => {
 
     // update product
 <<<<<<< HEAD
+<<<<<<< HEAD
     const handleEditUser = async (event) => {
 =======
     const handleEditTerm = async (event) => {
 >>>>>>> 846aab61 (...)
+=======
+    const handleEditTerm = async (event) => {
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
         event.preventDefault();
         // Submit change
         try {
@@ -53,10 +63,14 @@ export const AdminUpdateUser = () => {
                 ...inputValues,
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             const respond = await ClientAPI.post("updateClient", data);
 =======
             const respond = await ClientAPI.post("updateTerms", data);
 >>>>>>> 846aab61 (...)
+=======
+            const respond = await ClientAPI.post("updateTerms", data);
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
             if (respond.data !== null && respond.data !== undefined) {
                 //alert("Edited: ")
                 navigate("/adminUser")
@@ -71,6 +85,7 @@ export const AdminUpdateUser = () => {
         async function fetchData() {
             try {
                 const data = {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     userID: userID
                 };
@@ -89,6 +104,8 @@ export const AdminUpdateUser = () => {
                     minor: userData.minor,
                     school: userData.school,
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
                     termID: termID,
                 };
                 // get information
@@ -97,15 +114,21 @@ export const AdminUpdateUser = () => {
                 setInputValues({
                     termID: termID,
                     name: termData.name,
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
                 });
             }
             catch (err) {
                 alert("Can not Fetch", err)
 <<<<<<< HEAD
+<<<<<<< HEAD
                 console.log({err})
 =======
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
             }
         }
         fetchData();
@@ -122,17 +145,23 @@ export const AdminUpdateUser = () => {
                         <h1>Edit User</h1>
                         <ul class="breadcrumb">
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                             <li>
                                 <a class="active" href="/adminUser">Users</a>
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
                             <li>
                                 <a href="#">User</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
                                 <a class="active" href="/adminUser">Home</a>
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
@@ -143,6 +172,7 @@ export const AdminUpdateUser = () => {
                 </div>
 
                 <div className="updateProduct"> 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <form onSubmit={handleEditUser} encType="multipart/form-data" className="form-container">
         <div className="form-group">
@@ -237,6 +267,8 @@ export const AdminUpdateUser = () => {
 </div>
 
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
                     <form onSubmit={handleEditTerm} encType="multipart/form-data" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                         <label htmlFor="name" style={{ marginLeft: '30px' }}>Name:</label>
                         <input
@@ -313,7 +345,10 @@ export const AdminUpdateUser = () => {
                         <button type="submit" name="editUser">Edit User</button>
                     </form>
                 </div>
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
             </main>
         </section>
     );

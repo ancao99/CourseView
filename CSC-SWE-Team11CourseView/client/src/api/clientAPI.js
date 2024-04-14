@@ -3,6 +3,7 @@ import MySecurity from "./mySecurity";
 export const endPoint = "http://127.0.0.1:3000/dummydata/";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default class ClientAPI {
     static async post(action, data, selectedImage = null) {
         let formData = new FormData();
@@ -12,6 +13,8 @@ export default class ClientAPI {
             case "logout":
 
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
 export default class ClientAPI{ 
     static async post(action,data,selectedImage =null){
         let formData = new FormData();
@@ -20,7 +23,10 @@ export default class ClientAPI{
             case "register":               
             case "logout":
             
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
             //profile
             case "getUserFullName":
             case "updateUser":
@@ -30,6 +36,7 @@ export default class ClientAPI{
             case "getClient":
             case "updateClient":
             case "deleteClient":
+<<<<<<< HEAD
 <<<<<<< HEAD
             case "getClientDetail":
 
@@ -56,6 +63,8 @@ export default class ClientAPI{
                 formData = MySecurity.encryptedPackage(action, data, selectedImage);
                 console.log(formData)
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
 
             /* product
             case "getProduct":                
@@ -77,11 +86,15 @@ export default class ClientAPI{
             case "updateOrderStatus":*/
                 ////console.log("data send: ",data);
                 formData = MySecurity.encryptedPackage(action, data, selectedImage);  
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
                 break;
             default:
                 //console.log("Bad request");
                 return null;
+<<<<<<< HEAD
 <<<<<<< HEAD
         }
         return await axios.post(endPoint, formData);
@@ -90,10 +103,15 @@ export default class ClientAPI{
 
 }
 =======
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
         }       
         return await axios.post(endPoint, formData);        
     }
     
 
 }
+<<<<<<< HEAD
 >>>>>>> 846aab61 (...)
+=======
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420

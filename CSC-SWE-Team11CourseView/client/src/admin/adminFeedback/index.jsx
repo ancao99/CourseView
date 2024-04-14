@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../adminLayout/SideBar';
 import Navbar from '../adminLayout/NavBar';
@@ -294,3 +295,6 @@ export const AdminFeedback = () => {
 =======
   
 >>>>>>> 846aab61 (...)
+=======
+  
+>>>>>>> 1a694d21a9f52257c11076a13fa7cbb5bab38420
