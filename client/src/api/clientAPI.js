@@ -33,26 +33,13 @@ export default class ClientAPI {
             case "deleteFeedback":
             case "updateFeedback":
 
-
-                /* product
-                case "getProduct":                
-                case "getProductDetail": 
-                case "getNewestProduct": 
-                case "removeProduct":
-                case "getCategories":
-                case "addProduct":
-                case "updateProduct":
-                // order
-                case "addCart":     
-                case "getNumberCartItem":          
-                case "getCartItem":
-                case "updateCartItem":
-                case "checkOutCart":
-                case "getContact":
-                case "getOrderHistory":                
-                case "getOrderHistoryDeatail":                
-                case "updateOrderStatus":*/
-                ////console.log("data send: ",data);
+            //review
+            case "getComments":
+            case "addComments":
+            case "deleteComments":
+            case "updateComments":
+            case "getCommentsDetail":
+                console.log("data send: ", data);
                 formData = MySecurity.encryptedPackage(action, data, selectedImage);
                 console.log(formData)
                 break;

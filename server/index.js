@@ -119,6 +119,7 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
         case "getCoursesDetail":
             Courses.getCoursesDetail(key, data.entry, res);
             break;
+
         //feedback
         case "getFeedback":
             Feedback.getFeedback(key, data.entry, res);
@@ -131,6 +132,22 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             console.log(data.entry)
             break;
 
+        //review
+        case "getComments":
+            Review.getComments(key, data.entry, res);
+            break;
+        case "addComments":
+            Review.addComments(data.entry, res);
+            break;
+        case "deleteComments":
+            Review.deleteComments(data.entry, res);
+            break;
+        case "updateComments":
+            Review.updateComments(data.entry, res);
+            break;
+        case "getCommentsDetail":
+            Review.getCommentsDetail(key, data.entry, res);
+            break;
 
         default:
             res.status(400).json("Bad Request");

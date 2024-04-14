@@ -5,21 +5,19 @@ export default class feedback {
 
     static async getFeedback(key, inputD, res) {
         try {
-            db.execute(`SELECT feedback.*, user.fullName AS userFullName FROM feedback JOIN user ON feedback.userID = user.userID ORDER BY feedback.feedback DESC`, (err, data) => {
+            db.execute(`SELECT feedback.*, user.fullName AS userFullName FROM feedback JOIN user ON feedback.userID = user.userID ORDER BY feedback.feedbackID DESC`, (err, data) => {
                 if (err) return res.status(500).json(err);
-
+    
                 const feedback = data.map(feedback => ({
                     id: feedback.feedbackID,
                     userID: feedback.userID,
-                    userFullName: feedback.userFullName,
+                    userFullName: feedback.userFullName, 
                     role: feedback.role,
                     type: feedback.type,
                     comment: feedback.comment,
-                    recommend: feedback.recommend,
-                    edit: feedback.edit,
-
+                    recommend: feedback.recommend
                 }));
-
+    
                 const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), feedback);
                 return res.status(200).json(encryptedData);
             });
@@ -28,7 +26,7 @@ export default class feedback {
             return res.status(500).json("Failed to get feedback. " + error);
         }
     }
-
+    
     static deleteFeedback(inputD, res) {
         try {
             const { feedbackID } = inputD;
@@ -50,29 +48,56 @@ export default class feedback {
         }
     }
 
-    static async updateFeedback(inputData, res) {
+    static async addFeedback(inputData, res) {
         try {
-            console.log('Received data:', inputData); // Log received data
-            const { feedbackID, edit } = inputData;
-            if (!feedbackID || !edit) {
-                throw new Error("Feedabck ID or edit value is missing or undefined.");
+            // Extract data from the request body
+            const { userID, role, type,comment,recommend,edit } = inputData;
+            
+            // Validate input data
+            if ( !userID || !role || !type || !comment || !recommend) {
+                throw new Error("Missing required fields.");
             }
-            // Execute SQL query to update the edit value
-            const updateQuery = `UPDATE feedback SET edit = ? WHERE feedbackID = ?`;
-            db.execute(updateQuery, [edit, feedbackID], (err, data) => {
+
+            // Construct the SQL query to insert the comment into the database
+            const insertQuery = `INSERT INTO feedback (userID, role, type,comment,recommend) VALUES (?, ?, ?, ?,?)`;
+            
+            // Execute the SQL query
+            db.execute(insertQuery, [ userID, role, type,comment,recommend], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
                 }
-                return res.status(200).json("Feedback edit updated successfully.");
+                return res.status(200).json("Feedback added successfully.");
             });
+        } catch (error) {
+            console.error("Error adding feedback:", error);
+            return res.status(500).json("Failed to add feedback. " + error);
         }
-        catch (error) {
-            console.error("Error updating feedback edit:", error);
-            return res.status(500).json("Failed to update feedback edit. " + error);
+    }    
+
+    static getFeedbackDetail(key, inputD, res) {
+        try {
+            const feedbackID = inputD.feedbackID;
+            if (!feedbackID) {
+                return res.status(400).json("Feedback ID is missing.");
+            }
+
+            db.execute(`SELECT * FROM feedback WHERE feedbackID = ?`, [feedbackID], (err, data) => {
+                if (err) {
+                    return res.status(500).json(err);
+                }
+
+                if (data.length === 0) {
+                    return res.status(404).json("Feedback not found.");
+                }
+
+                const feedbackData = data[0];
+                const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), feedbackData);
+                return res.status(200).json(encryptedData);
+            });
+        } catch (error) {
+            console.error("Error getting feedback detail:", error);
+            return res.status(500).json("Failed to get feedback detail. " + error);
         }
     }
-        // Execute SQL query to update the edit value
-
-
 }

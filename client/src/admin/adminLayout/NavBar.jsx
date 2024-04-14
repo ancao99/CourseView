@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import "./adminLayout.css";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 
 const Navbar = ({ onToggleSidebar, onDarkModeChange, onSearchToggle }) => {
   const [searchFormVisible, setSearchFormVisible] = useState(false);
@@ -28,9 +30,11 @@ const Navbar = ({ onToggleSidebar, onDarkModeChange, onSearchToggle }) => {
         <i className='bx bxs-bell'></i>
         <span className="num">0</span>
       </a>
-      <a href="#" className="profile">
+      <a href="/" className="profile">
+      
         <img src="/logo.png" alt="Profile" />
       </a>
+
     </nav>
   );
 }

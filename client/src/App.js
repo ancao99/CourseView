@@ -22,8 +22,6 @@ import { AdminCourses } from './admin/adminCourses/';
 import { AdminUpdateCourses } from './admin/adminCourses/adminUpdateCourses';
 import { AdminUser } from './admin/adminUser/';
 import { AdminUpdateUser } from './admin/adminUser/adminUpdateUser';
-import { AdminDepartment } from './admin/adminDepartment/';
-import { AdminUpdateDepartment } from './admin/adminDepartment/adminUpdateDepartment';
 import { AdminFeedback } from "./admin/adminFeedback";
 
 const router = createBrowserRouter([
@@ -86,14 +84,8 @@ const router = createBrowserRouter([
     path: "adminUpdateUser/:userID",
     element: <AdminUpdateUser />,
   },
-  {
-    path: "adminDepartment",
-    element: <AdminDepartment />,
-  },
-  {
-    path: "adminUpdateDepartment/:departmentID",
-    element: <AdminUpdateDepartment />,
-  },
+  
+
 ]);
 
 function App() {

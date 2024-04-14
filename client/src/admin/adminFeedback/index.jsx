@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../adminLayout/SideBar';
 import Navbar from '../adminLayout/NavBar';
+import "./adminFeedback.css";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import ClientAPI from "../../api/clientAPI";
-import "./adminFeedback.css";
+import CourseAPI from '../../api/courseAPI.js';
 
 export const AdminFeedback = () => {
     const [feedback, setFeedback] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const feedbackPerPage = 10;
+    const feedbackPerPage = 20;
     const indexOfLastFeedback = currentPage * feedbackPerPage;
-    const indexOfFirstFeedback = indexOfLastFeedback - feedbackPerPage;
+    const indexOfFirstFeedback= indexOfLastFeedback - feedbackPerPage;
     const currentFeedback = feedback.slice(indexOfFirstFeedback, indexOfLastFeedback);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [visiblePages, setVisiblePages] = useState([]);
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -21,26 +24,78 @@ export const AdminFeedback = () => {
             navigate("/");
     }, []);
 
+    
+
+    useEffect(() => {
+        async function fetchFeedback() {
+            try {
+                const data = { limit: feedbackPerPage, page: currentPage };
+                const response = await ClientAPI.post("getFeedbacks", data); // Updated method name
+                setFeedback(response.data);
+            } catch (error) {
+                console.error("Error fetching Feedback:", error);
+            }
+        }
+    
+        fetchFeedback();
+    }, [currentPage]);
+    
+
+    const paginate = pageNumber => {
+        const totalPages = Math.ceil(feedback.length / feedbackPerPage);
+        if (pageNumber < 1 || pageNumber > totalPages) {
+            return;
+        }
+        setCurrentPage(pageNumber);
+    };
+
+    const calculateVisiblePages = (currentPage, totalPages) => {
+        const range = 2; // Number of pages to show before and after the current page
+        let start = Math.max(1, currentPage - range);
+        let end = Math.min(totalPages, currentPage + range);
+
+        if (currentPage - range <= 1) {
+            end = Math.min(totalPages, 1 + 2 * range);
+        }
+        if (currentPage + range >= totalPages) {
+            start = Math.max(1, totalPages - 2 * range);
+        }
+
+        return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    };
+
+    useEffect(() => {
+        const totalPages = Math.ceil(feedback.length / feedbackPerPage);
+        setVisiblePages(calculateVisiblePages(currentPage, totalPages));
+    }, [currentPage, feedback]);
+
     async function fetchFeedback() {
         try {
             const data = { limit: feedbackPerPage, page: currentPage };
-            const response = await ClientAPI.post("getFeedback", data);
+            const response = await ClientAPI.post("getFeeback", data);
             setFeedback(response.data);
         } catch (error) {
-            console.error("Error fetching user:", error);
+            console.error("Error fetching Feedback:", error);
+        }
+    }
+
+    async function fetchUser() {
+        try {
+            const data = { limit: feedbackPerPage, page: currentPage };
+
+            const response1 = await ClientAPI.post("getClient", data);
+            setUsers(response1.data);
+
+
+        } catch (error) {
+            console.error("Error fetching User:", error);
         }
     }
 
     useEffect(() => {
         fetchFeedback();
+        fetchUser();
     }, [currentPage]);
-
-    const paginate = pageNumber => {
-        if (pageNumber < 1 || pageNumber > Math.ceil(feedback.length / feedbackPerPage)) {
-            return;
-        }
-        setCurrentPage(pageNumber);
-    };
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -50,6 +105,44 @@ export const AdminFeedback = () => {
         setIsModalOpen(false);
     };
 
+    /*            
+    const handleAddCourses = async (event) => {
+                event.preventDefault();
+                try {
+                    const formData = new FormData();
+                    
+                    const file = event.target.elements.excelFile.files[0]; // Get the uploaded file
+                    const terms = event.target.elements.terms.value; // Get the selected term
+                    const departments = event.target.elements.departments.value; // Get the selected department
+                    
+                    formData.append('terms', terms);
+                    formData.append('departments', departments);
+                    formData.append('excelFile', file);
+                    
+                    console.log('terms', terms);
+                    console.log('departments', departments);
+                    console.log('excelFile', file);
+                    
+                    console.log("Data sent to server:", formData);
+                    
+                    const response = await ClientAPI.post("addCourses", formData);
+                    console.log("Response from server:", response);
+                    
+                    // If the response is successful, fetch updated courses
+                    if (response && response.data) {
+                        await fetchCourses();
+                    } else {
+                        console.error("Invalid response from server:", response);
+                    }
+                } catch (error) {
+                    console.error("Error adding Courses:", error);
+                    console.log("Error details:", error.response?.data);
+                }
+                closeModal();
+            }; 
+            */
+
+
 
     const removeFeedback = async (event, feedbackID) => {
         event.preventDefault();
@@ -58,14 +151,13 @@ export const AdminFeedback = () => {
                 feedbackID: feedbackID,
             }
             await ClientAPI.post("deleteFeedback", data);
-            alert("Deleted feedback Successfully");
+            alert("Deleted Feedback Successfully");
             await fetchFeedback();
         } catch (error) {
-            console.error("Error deleting feddback:", error);
-            alert("Error deleting feedback: " + error.message);
+            console.error("Error deleting Feedback:", error);
+            alert("Error deleting Feedback: " + error.message);
         }
     }
-
 
     useEffect(() => {
         const modalForm = document.getElementById("addModal");
@@ -80,7 +172,7 @@ export const AdminFeedback = () => {
     }, [isModalOpen]);
 
     return (
-        <section id="content" className='adminPage terms'>
+        <section id="content" className='adminPage course'>
             <Sidebar />
             <Navbar />
             <main className="content-main-product">
@@ -99,40 +191,76 @@ export const AdminFeedback = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>User name</th>
                             <th>Role</th>
                             <th>Type</th>
-                            <th>Commend</th>
-                            <th>Recommend</th>
+                            <th>Comment</th>
                             <th>Admin Comment</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentFeedback.map((feedback) => (
-                            (!feedback.isAdmin) && (
                             <tr key={feedback.id}>
                                 <td>{feedback.id}</td>
                                 <td>{feedback.name}</td>
                                 <td>{feedback.role}</td>
                                 <td>{feedback.type}</td>
                                 <td>{feedback.comment}</td>
-                                <td>{feedback.edit}</td>
-                                <td className="grid-container"> {/* Changed 'class' to 'className' */}
-                                    <a className="edit" role="button" href={`}`}>
+                                <td>{feedback.edit}</td>                                <td>
+                                    {/* <a class="edit" role="button" href={`adminUpdateCourses/${courses.id}`}>
                                         Edit
-                                    </a>
+                                    </a> */}
                                     <form method="post" action="">
-                                        <button className="delete" onClick={(e) => removeFeedback(e, feedback.id)}>
+                                        <button class="delete" onClick={(e) => removeFeedback(e, feedback.id)}>
                                             Delete
                                         </button>
                                     </form>
                                 </td>
-                            </tr>)
-                        ))}
 
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
+
+                {/* <button id="add-btn" onClick={openModal}>
+                    Add New
+                </button>
+
+                {isModalOpen && (
+                    <div id="addModal" className="modal-form">
+                        <div id="popup-form" className="popup">
+                            <h2 style={{ textAlign: 'center', color: 'var(--blue)' }}>Add Data</h2>
+                            <br />
+                            <form onSubmit={handleAddCourses} encType="multipart/form-data">
+                                <label htmlFor="terms">Select Terms:</label>
+                                <select id="terms" name="terms">
+                                    {terms.map((term) => (
+                                        <option key={term.id} value={term.id}>{term.name}</option>
+                                    ))}
+                                </select><br />
+                                <label htmlFor="departments">Select Departments:</label>
+                                <select id="departments" name="departments">
+                                    {departments.map((department) => (
+                                        <option key={department.id} value={department.id}>{department.name}</option>
+                                    ))}
+                                </select><br />
+
+
+                                <label htmlFor="file">Upload Excel File: </label><br />
+                                <input type="file" id="file" name="excelFile" accept=".xlsx, .xls" /><br /><br />
+
+                                <button id="close-btn" type="button" onClick={closeModal}>
+                                    Close
+                                </button>
+                                <button type="submit" name="addProduct">
+                                    Submit
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+                )} */}
                 <br /><br />
                 <div className='page-number-admin'>
                     <div aria-label="Page navigation example">
@@ -142,10 +270,10 @@ export const AdminFeedback = () => {
                                     <span aria-hidden="true">«</span>
                                 </a>
                             </li>
-                            {[...Array(Math.ceil(feedback.length / feedbackPerPage)).keys()].map((number, index) => (
-                                <li key={index} className="page-item">
-                                    <a onClick={() => paginate(number + 1)} href={`#${number + 1}`} className={`page-link ${currentPage === number + 1 ? 'active' : ''}`}>
-                                        {number + 1}
+                            {visiblePages.map((number) => (
+                                <li key={number} className="page-item">
+                                    <a onClick={() => paginate(number)} href={`#${number}`} className={`page-link ${currentPage === number ? 'active' : ''}`}>
+                                        {number}
                                     </a>
                                 </li>
                             ))}

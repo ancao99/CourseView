@@ -93,11 +93,7 @@ export const AdminUpdateCourses = () => {
                         <h1>Edit Courses</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a href="#">Courses</a>
-                            </li>
-                            <li><i class='bx bx-chevron-right' ></i></li>
-                            <li>
-                                <a class="active" href="/adminCourses">Home</a>
+                                <a class="active" href="/adminCourses">Courses</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>

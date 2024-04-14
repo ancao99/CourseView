@@ -52,12 +52,12 @@
 }
 
 #sidebar .brand {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     height: 56px;
     display: flex;
     align-items: center;
-    color: var(--blue);
+    color: black;
     position: sticky;
     top: 0;
     left: 0;
@@ -66,6 +66,7 @@
     /*padding-bottom: 20px;*/
     padding-top: 14px;
     box-sizing: content-box;
+    text-decoration: none;
 }
 
 #sidebar .brand .bx {
@@ -88,7 +89,7 @@
 }
 
 #sidebar .side-menu li.active {
-    background: var(--grey);
+    background: #e8f5ff;
     position: relative;
 }
 
@@ -127,6 +128,7 @@
     color: var(--dark);
     white-space: nowrap;
     overflow-x: hidden;
+    text-decoration: none;
 }
 
 #sidebar .side-menu.top li.active a {
@@ -324,6 +326,7 @@
     font-family: var(--poppins);
     max-height: calc(100vh - 56px);
     overflow-y: auto;
+    background: #e8f5ff;
 }
 
 #content main .head-title {

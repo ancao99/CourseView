@@ -165,7 +165,7 @@ export const AdminCourses = () => {
                         <h1>Courses</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a class="active" href="#">Course</a>
+                                <a class="active" href="#">Courses</a>
                             </li>
                         </ul>
                     </div>

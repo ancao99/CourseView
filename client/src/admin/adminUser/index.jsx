@@ -86,10 +86,10 @@ export const AdminUser = () => {
             <main className="content-main-product">
                 <div className="head-title">
                     <div className="adminLeft">
-                        <h1>User</h1>
+                        <h1>Users</h1>
                         <ul class="breadcrumb">
                             <li>
-                                <a class="active" href="#">User</a>
+                                <a class="active" href="#">Users</a>
                             </li>
                         </ul>
                     </div>

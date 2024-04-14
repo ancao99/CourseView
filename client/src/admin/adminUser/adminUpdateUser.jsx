@@ -94,7 +94,7 @@ export const AdminUpdateUser = () => {
                         <ul class="breadcrumb">
 
                             <li>
-                                <a class="active" href="/adminUser">User</a>
+                                <a class="active" href="/adminUser">Users</a>
                             </li>
                             <li><i class='bx bx-chevron-right' ></i></li>
                             <li>
