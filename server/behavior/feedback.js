@@ -51,18 +51,18 @@ export default class feedback {
     static async addFeedback(inputData, res) {
         try {
             // Extract data from the request body
-            const { userID, role, type,comment,recommend } = inputData;
-            
+            const { userID, name, role, type,comment,recommed } = inputData;
+            console.log(inputData)
             // Validate input data
-            if ( !userID || !role || !type || !comment || !recommend) {
+            if ( !userID || !name || !role || !type || !comment || !recommed) {
                 throw new Error("Missing required fields.");
             }
 
             // Construct the SQL query to insert the comment into the database
-            const insertQuery = `INSERT INTO feedback (userID, role, type,comment,recommend,edit) VALUES (?, ?, ?, ?,?,?)`;
+            const insertQuery = `INSERT INTO feedback (userID,name, role, type,comment,recommed) VALUES (?, ?, ?, ?,?, ?)`;
             
             // Execute the SQL query
-            db.execute(insertQuery, [ userID, role, type,comment,recommend], (err, data) => {
+            db.execute(insertQuery, [ userID,name, role, type,comment,recommed], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);

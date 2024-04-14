@@ -5,6 +5,33 @@ import Cookies from 'js-cookie';
 import ClientAPI from '../../api/clientAPI';
 
 export function Header() {
+  const [feedback, setFeedback] = useState({
+    userID: Cookies.get("userID") || "",
+    name: "",
+    role: "student",
+    type: "",
+    comment: "",
+    recommed: ""
+    });
+  const handleInputChange = (event, key) => {
+    setFeedback(prev => ({
+      ...prev,
+      [key]: event.target.value,
+    }));
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log(feedback)
+      if (!feedback.userID || !feedback.name || !feedback.role || !feedback.type || !feedback.comment || !feedback.recommed) {
+        return alert("Please enter feedback!");
+      }
+      await ClientAPI.post("addFeedback", feedback);
+      alert("Your Feedback will be reviewed!");
+    } catch (error) {
+      alert("Failed to add feedback");
+    }
+  };
   //drop down function
   const [showDropdown, setShowDropdown] = useState(false);
     const toggleDropdown = () => {
@@ -130,7 +157,7 @@ export function Header() {
       </div>
       {showFeedbackForm && (
         <div className='feedback' ref={feedbackFormRef}>
-          <form id="form">
+          <form id="form" onSubmit={handleSubmit}>
             <button className='close_button' onClick={handleCloseFeedbackForm}><img src="close_feedback.png" style={{ width: '30px', height: '30px' }} alt="close"></img></button>
             <h1>CourseView Survey Form</h1>
             {/* Details */}
@@ -140,7 +167,9 @@ export function Header() {
               </label>
               <div>
                 {/* Input Type Text */}
-                <input type="text" id="name" placeholder="Enter your name" required />
+                <input type="text" id="name" placeholder="Enter your name" 
+                value={feedback.name}
+                onChange={(e) => handleInputChange(e, "name")} required />
                 <span />
               </div>
             </div>
@@ -150,7 +179,11 @@ export function Header() {
                 <strong>Which option best describes you?</strong>
               </label>
               {/* Dropdown options */}
-              <select name="role" id="role">
+              <select name="role" id="role"
+              value={feedback.role}
+              onChange={(e) => handleInputChange(e, "role")}
+              required 
+              >
                 <option value="student">Student</option>
                 <option value="professional">Professor</option>
                 <option value="other">Not Student nor Professor</option>
@@ -162,7 +195,10 @@ export function Header() {
               </label>
               {/* Input Type Email*/}
               <div>
-                <input type="text" id="type" placeholder="What is the problem?" required />
+                <input type="text" id="type" placeholder="What is the problem?" 
+                value={feedback.type}
+                onChange={(e) => handleInputChange(e, "type")}
+                required />
                 <span />
               </div>
             </div>
@@ -173,21 +209,33 @@ export function Header() {
                 name="comment"
                 id="comment"
                 placeholder="Enter your comment here"
+                value={feedback.comment}
+                  onChange={(e) => handleInputChange(e, "comment")}
+                  required
               />
             </div>
-            <div id='radio-button-form' className="form-control">
+            <div id='recommed' className="form-control">
               <label><strong>Would you recommend CourseView to a friend?</strong></label>
               {/* Input Type Radio Button */}
-              <label className="recommed-1">
-                <input type="radio" id="recommed-1" name="recommed" />
+              <label className="recommend-1">
+                <input type="radio" id="recommend-1" name="recommend" 
+                checked={feedback.recommed === "Yes"} 
+                Value="Yes"
+                onChange={(e) => handleInputChange(e, "recommed")}/>
                 &nbsp; Yes
               </label>
-              <label className="recommed-2">
-                <input type="radio" id="recommed-2" name="recommed" />
+              <label className="recommend-2">
+                <input type="radio" id="recommend-2" name="recommend"
+                Value="No"
+                checked={feedback.recommed === "No"} 
+                onChange={(e) => handleInputChange(e, "recommed")} />
                 &nbsp; No
               </label>
-              <label className="recommed-3">
-                <input type="radio" id="recommed-3" name="recommed" />
+              <label className="recommend-3">
+                <input type="radio" id="recommend-3" name="recommend" 
+                checked={feedback.recommed === "Maybe"} 
+                Value="Maybe"
+                onChange={(e) => handleInputChange(e, "recommed")}/>
                 &nbsp; Maybe
               </label>
             </div>
