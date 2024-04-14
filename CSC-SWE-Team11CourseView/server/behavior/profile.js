@@ -1,46 +1,27 @@
 import { db } from "../db.js"
 import MySecurity from "./myServerSecurity.js";
 
-export default class profile  {
+export default class Profile {
 
-    static async getProfile(key, inputD, res) {
-        try {
-            db.execute(`SELECT user.* FROM user`, (err, data) => {
-                if (err) return res.status(500).json(err);
-    
-                const user = data.map(user=> ({
-                    userID: user.userID,
-                    userFullName: user.fullName, 
-                    pass: user.password,
-                }));
-    
-                const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), user);
-                return res.status(200).json(encryptedData);
-            });
-        }
-        catch (error) {
-            return res.status(500).json("Failed to get comment. " + error);
-        }
-    }
-    
-    static deleteUser(inputD, res) {
+    static async deleteUser(inputD, res) {
         try {
             const { userID } = inputD;
             if (!userID) {
                 throw new Error("User ID is missing or undefined.");
             }
-            const deleteQuery = `DELETE FROM user WHERE userID = ?`;
-            db.execute(deleteQuery, [userID], (err, data) => {
-                if (err) {
-                    console.error("Error executing SQL query:", err);
-                    return res.status(500).json(err);
-                }
-                return res.status(200).json("User Deleted Successfully.");
-            });
-        }
-        catch (error) {
+
+            // Optional: Delete user token (if userToken table exists)
+            const deleteTokenQuery = `DELETE FROM userToken WHERE userID = ?`;
+            await db.execute(deleteTokenQuery, [userID]);
+
+
+            const deleteUserQuery = `DELETE FROM user WHERE userID = ?`;
+            await db.execute(deleteUserQuery, [userID]);
+
+            return res.status(200).json("User Deleted Successfully.");
+        } catch (error) {
             console.error("Error deleting user:", error);
-            return res.status(500).json("Failed to delete uer. " + error);
+            return res.status(500).json("Failed to delete user. " + error);
         }
     }
 
@@ -48,23 +29,60 @@ export default class profile  {
     static async updateUser(inputData, res) {
         try {
             console.log('Received data:', inputData); // Log received data
-            const { userID} = inputData;
+            const { userID, email, phone, department, school, major, minor } = inputData;
             if (!userID) {
                 throw new Error("User ID is missing or undefined.");
             }
-            // Execute SQL query to update the comment
-            const updateQuery = `UPDATE user SET password = ? WHERE userID = ?`;
-            db.execute(updateQuery, [userID], (err, data) => {
+
+            let updateFields = [];
+            let updateValues = [];
+
+            if (email) {
+                updateFields.push('email = ?');
+                updateValues.push(email);
+            }
+            if (department) {
+                updateFields.push('department = ?');
+                updateValues.push(department);
+            }
+            if (major) {
+                updateFields.push('major = ?');
+                updateValues.push(major);
+            }
+            if (school) {
+                updateFields.push('school = ?');
+                updateValues.push(school);
+            }
+            if (minor) {
+                updateFields.push('minor = ?');
+                updateValues.push(minor);
+            }
+            if (phone) {
+                updateFields.push('phone = ?');
+                updateValues.push(phone);
+            }
+
+            if (updateFields.length === 0) {
+                throw new Error("No fields provided to update.");
+            }
+
+            // Construct the SQL query to update user details
+            const updateQuery = `UPDATE user SET ${updateFields.join(', ')} WHERE userID = ?`;
+            updateValues.push(userID);
+
+            // Execute SQL query to update user details
+            db.execute(updateQuery, updateValues, (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
                 }
-                return res.status(200).json("Review updated successfully.");
+                return res.status(200).json("User details updated successfully.");
             });
         }
         catch (error) {
-            console.error("Error updating review:", error);
-            return res.status(500).json("Failed to update review. " + error);
+            console.error("Error updating user details:", error);
+            return res.status(500).json("Failed to update user details. " + error);
         }
-    }    
+    }
+
 }
