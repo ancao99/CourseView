@@ -20,6 +20,34 @@ CREATE TABLE `userToken`
   FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
 );
 
+<<<<<<< HEAD:CSC-SWE-Team11CourseView/server/initial_DB.sql
 INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) VALUES ('1', '0', '0', '0', '1');
 
 INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) VALUES ('admin', 'admin@gmail.com', 'admin', '1');
+=======
+CREATE TABLE `course`
+(
+  `courseID` INT AUTO_INCREMENT,
+  `CRN` INT,
+  `courseAbb` VARCHAR(255),
+  `courseNumber` INT,
+  `professor` VARCHAR(255),
+  `term` VARCHAR(255),
+  `department` VARCHAR(255),
+);
+CREATE TABLE `review`
+(
+  `reviewID` INT AUTO_INCREMENT,
+  `coursesID` INT,
+  `userID` INT,
+  `comment` TEXT,
+  `reviewDate` DATETIME,
+  PRIMARY KEY (`reviewID`),
+  FOREIGN KEY (`coursesID`) REFERENCES `courses`(`coursesID`),
+  FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
+);
+
+INSERT INTO `user` (`userID`, `fullName`, `email`, `password`, `isAdmin`) VALUES ('1', '0', '0', '0', '1');
+
+INSERT INTO `user` (`fullName`, `email`, `password`, `isAdmin`) VALUES ('admin', 'admin@gmail.com', '$2a$10$7lE8gY1uytxXtbUXFkX30unjimP7JCBIKPBdRushWEzyF4Qb6bZbq', '1');
+>>>>>>> ancao99/main:server/initial_DB.sql
