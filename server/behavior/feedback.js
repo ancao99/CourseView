@@ -15,9 +15,9 @@ export default class feedback {
                     role: feedback.role,
                     type: feedback.type,
                     comment: feedback.comment,
-                    recommend: feedback.recommend
+                    recommend: feedback.recommend,
+                    edit: feedback.edit,
                 }));
-    
                 const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), feedback);
                 return res.status(200).json(encryptedData);
             });

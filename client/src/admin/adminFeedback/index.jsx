@@ -30,7 +30,7 @@ export const AdminFeedback = () => {
         async function fetchFeedback() {
             try {
                 const data = { limit: feedbackPerPage, page: currentPage };
-                const response = await ClientAPI.post("getFeedbacks", data); // Updated method name
+                const response = await ClientAPI.post("getFeedback", data); // Updated method name
                 setFeedback(response.data);
             } catch (error) {
                 console.error("Error fetching Feedback:", error);
@@ -72,7 +72,7 @@ export const AdminFeedback = () => {
     async function fetchFeedback() {
         try {
             const data = { limit: feedbackPerPage, page: currentPage };
-            const response = await ClientAPI.post("getFeeback", data);
+            const response = await ClientAPI.post("getFeedback", data);
             setFeedback(response.data);
         } catch (error) {
             console.error("Error fetching Feedback:", error);
@@ -85,6 +85,7 @@ export const AdminFeedback = () => {
 
             const response1 = await ClientAPI.post("getClient", data);
             setUsers(response1.data);
+
 
 
         } catch (error) {
@@ -203,11 +204,12 @@ export const AdminFeedback = () => {
                         {currentFeedback.map((feedback) => (
                             <tr key={feedback.id}>
                                 <td>{feedback.id}</td>
-                                <td>{feedback.name}</td>
+                                <td>{feedback.userFullName}</td>
                                 <td>{feedback.role}</td>
                                 <td>{feedback.type}</td>
                                 <td>{feedback.comment}</td>
-                                <td>{feedback.edit}</td>                                <td>
+                                <td>{feedback.edit}</td>
+                                <td>
                                     {/* <a class="edit" role="button" href={`adminUpdateCourses/${courses.id}`}>
                                         Edit
                                     </a> */}
