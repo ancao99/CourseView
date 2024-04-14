@@ -1,0 +1,30 @@
+.courses-container {
+    width: 100%;
+    padding-top: 8%;
+    background-color: #e8f5ff;
+}
+
+.all_course_list {
+    padding: 40px 50px 50px 50px;
+    padding: 50% auto;
+}
+
+.course_list_center {
+    padding: 0px 50px 50px 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 60px;
+    justify-items: center;
+}
+
+.all_course_list .card {
+    width: 400px;
+    height: 500px;
+    text-decoration: none;
+}
+
+.page-number {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
