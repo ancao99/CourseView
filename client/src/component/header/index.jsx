@@ -186,7 +186,7 @@ export function Header() {
               >
                 <option value="student">Student</option>
                 <option value="professional">Professor</option>
-                <option value="other">Not Student nor Professor</option>
+                <option value="other">Anonymous</option>
               </select>
             </div>
             <div className="form-control">
@@ -241,7 +241,7 @@ export function Header() {
             </div>
             
             {/* Multi-line Text Input Control */}
-            <button type="submit" value="submit">
+            <button type="submit" value="submit" onClick={handleCloseFeedbackForm}>
               <strong>Submit</strong>
             </button>
           </form>

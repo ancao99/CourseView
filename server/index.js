@@ -135,6 +135,9 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             Feedback.updateFeedback(data.entry, res);
             console.log(data.entry)
             break;
+        case "getFeedbackDetail":
+            Feedback.getFeedbackDetail(key, data.entry, res);
+            break;
 
         //review
         case "getComments":

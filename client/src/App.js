@@ -25,6 +25,8 @@ import { AdminUpdateCourses } from './admin/adminCourses/adminUpdateCourses';
 import { AdminUser } from './admin/adminUser/';
 import { AdminUpdateUser } from './admin/adminUser/adminUpdateUser';
 import { AdminFeedback } from "./admin/adminFeedback";
+import { AdminUpdateFeedback } from './admin/adminFeedback/adminUpdateFeedback';
+
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,10 @@ const router = createBrowserRouter([
   {
     path: "adminFeedback",
     element: <AdminFeedback />,
+  },
+  {
+    path: "adminUpdateFeedback/:feedbackID",
+    element: <AdminUpdateFeedback />,
   },
   {
     path: "adminUpdateUser/:userID",

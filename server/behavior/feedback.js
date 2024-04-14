@@ -84,7 +84,7 @@ export default class feedback {
     
             // Execute SQL query to update the school field
             const updateQuery = `UPDATE feedback SET edit = ? WHERE feedbackID = ?`;
-            db.execute(updateQuery, [feedbackID, edit], (err, data) => {
+            db.execute(updateQuery, [edit,feedbackID], (err, data) => {
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
@@ -97,5 +97,31 @@ export default class feedback {
             return res.status(500).json("Failed to update feedback's edit. " + error.message);
         }
     }
-    
+    static getFeedbackDetail(key, inputD, res) {
+        try {
+            const feedbackID = inputD.feedbackID;
+            console.log(feedbackID);
+            if (!feedbackID) {
+                return res.status(400).json("Feedback ID is missing.");
+            }
+
+            // Fetch term details including the term name
+            db.execute(`SELECT feedbackID, edit FROM feedback WHERE feedbackID = ?`, [feedbackID], (err, data) => {
+                if (err) {
+                    return res.status(500).json(err);
+                }
+
+                if (data.length === 0) {
+                    return res.status(404).json("Feedback not found.");
+                }
+
+                const feedbackData = data[0];
+                const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), feedbackData);
+                return res.status(200).json(encryptedData);
+            });
+        } catch (error) {
+            console.error("Error getting feedback detail:", error);
+            return res.status(500).json("Failed to get feedback detail. " + error);
+        }
+    }
 }

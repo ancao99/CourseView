@@ -33,6 +33,7 @@ export default class ClientAPI {
             case "deleteFeedback":
             case "updateFeedback":
             case "addFeedback":
+            case "getFeedbackDetail":
 
             //review
             case "getComments":
