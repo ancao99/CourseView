@@ -12,7 +12,12 @@ const Sidebar = ({ hidden }) => {
   const allSideMenu = [
     { text: 'Dashboard', icon: '/admin-dashboard.png', href: '/adminDashboard' },
     { text: 'Courses', icon: '/admin-course.png', href: '/adminCourses' },
+<<<<<<< HEAD
     { text: 'Users', icon: '/admin-user.png', href: '/adminUser' },
+=======
+    { text: 'User', icon: '/admin-user.png', href: '/adminUser' },
+    { text: 'Review', icon: '/admin-review.png', href: '/adminDepartment' },
+>>>>>>> 846aab61 (...)
     { text: 'Feedback', icon: '/admin-feedback.png', href: '/adminFeedback' },
 
   ];
@@ -41,7 +46,11 @@ const Sidebar = ({ hidden }) => {
 
   return (
     <section id="sidebar" className={hidden ? 'hide' : ''}>
+<<<<<<< HEAD
       <Link to="/" className="brand">
+=======
+      <Link to="/courses" className="brand">
+>>>>>>> 846aab61 (...)
         <img src="/logo.png" alt="Profile" />
         <span className="text"> CourseView</span>
       </Link>

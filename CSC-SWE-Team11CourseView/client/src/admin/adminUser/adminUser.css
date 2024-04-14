@@ -36,6 +36,7 @@
     font-family: Poppins;
     box-sizing: border-box
 }
+<<<<<<< HEAD
 .adminPage .updateProduct {
     margin: 0 auto;
     padding: 40px;
@@ -67,3 +68,5 @@
 .adminPage label{
     padding-bottom: 5px;
 }
+=======
+>>>>>>> 846aab61 (...)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../adminLayout/SideBar';
 import Navbar from '../adminLayout/NavBar';
@@ -290,3 +291,6 @@ export const AdminFeedback = () => {
         </section>
     );
 };
+=======
+  
+>>>>>>> 846aab61 (...)
