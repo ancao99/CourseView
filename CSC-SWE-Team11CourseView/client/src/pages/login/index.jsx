@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router
 import './login.css';
@@ -84,11 +85,31 @@ export const Login = () => {
     setIsSignUp(false);
   };
 
+=======
+import React, { useState } from 'react';
+import './login.css';
+
+export const Login = () => {
+
+ // Define state variables to manage the slider and form section movements
+ const [isSignUp, setIsSignUp] = useState(false);
+
+ // Function to handle signup button click
+ const handleSignUpClick = () => {
+   setIsSignUp(true);
+ };
+
+ // Function to handle login button click
+ const handleLoginClick = () => {
+   setIsSignUp(false);
+ };
+>>>>>>> Pal_xps_v1
   return (
     <div className='app'>
       <div className={`cont ${isSignUp ? 's-signup' : ''}`}>
         <div className="form sign-in">
           <h2>Sign In</h2>
+<<<<<<< HEAD
           <form method="POST" id="login-form" onSubmit={handleLoginSubmit}>
             <label>
               <span>Email Address</span>
@@ -107,6 +128,19 @@ export const Login = () => {
             </label>
             <button className="submit" type="submit">Sign In</button>
           </form>
+=======
+          <label>
+            <span>Email Address</span>
+            <input type="email" name="email" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" />
+          </label>
+          <button className="submit" type="button">
+            Sign In
+          </button>
+>>>>>>> Pal_xps_v1
           <p className="forgot-pass">Forgot Password ?</p>
         </div>
         <div className="sub-cont">
@@ -124,6 +158,7 @@ export const Login = () => {
             </div>
           </div>
           <div className="form sign-up">
+<<<<<<< HEAD
             <form method="POST" className="register-form" id="register-form" onSubmit={handleSubmit}>
               <h2>Sign Up</h2>
               <label>
@@ -156,5 +191,31 @@ export const Login = () => {
         </div>
       </div>
     </div>
+=======
+            <h2>Sign Up</h2>
+            <label>
+              <span>Name</span>
+              <input type="text" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" />
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" />
+            </label>
+            <label>
+              <span>Confirm Password</span>
+              <input type="password" />
+            </label>
+            <button type="button" className="submit">
+              Sign Up Now
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+>>>>>>> Pal_xps_v1
   );
 };

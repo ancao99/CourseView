@@ -13,6 +13,7 @@ import { CommonLayout } from "./layouts/CommonLayout";
 import { Home } from "./pages/home/";
 import { Login } from "./pages/login";
 import { AboutUs } from "./pages/about-us";
+<<<<<<< HEAD
 import { Courses } from "./pages/courses";
 import { Profile } from "./pages/profile";
 
@@ -24,6 +25,8 @@ import { AdminTerms } from './admin/adminTerms/';
 import { AdminUpdateTerms } from './admin/adminTerms/adminUpdateTerms';
 import { AdminDepartment } from './admin/adminDepartment/';
 import { AdminUpdateDepartment } from './admin/adminDepartment/adminUpdateDepartment';
+=======
+>>>>>>> Pal_xps_v1
 
 const router = createBrowserRouter([
   {
@@ -40,10 +43,13 @@ const router = createBrowserRouter([
             element: <Home />,
           },
           {
+<<<<<<< HEAD
             path: "courses",
             element: <Courses/>
           },
           {
+=======
+>>>>>>> Pal_xps_v1
             path: "about-us",
             element: <AboutUs />,
           },
@@ -52,6 +58,7 @@ const router = createBrowserRouter([
             path: "login",
             element: <Login />,
           },
+<<<<<<< HEAD
           {
             path: "profile",
             element: <Profile />,
@@ -89,6 +96,12 @@ const router = createBrowserRouter([
     path: "adminUpdateDepartment/:departmentID",
     element: <AdminUpdateDepartment />,
   },
+=======
+        ],
+      },
+    ]
+  },
+>>>>>>> Pal_xps_v1
 ]);
 
 function App() {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useRef, useEffect } from 'react';
 import './header.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -41,6 +42,15 @@ export function Header() {
     setShowFeedbackForm(false);
   };
 // route page
+=======
+import React from 'react';
+import './header.css';
+import { Link, useNavigate } from 'react-router-dom';
+
+export function Header() {
+  const navigate = useNavigate();
+
+>>>>>>> Pal_xps_v1
   const handleLoginButtonClick = () => {
     navigate('/login');
   };
@@ -53,6 +63,7 @@ export function Header() {
     navigate('/about-us');
   };
 
+<<<<<<< HEAD
   const handleCourseButtonClick = () => {
     navigate('/courses');
   };
@@ -97,11 +108,25 @@ export function Header() {
 
   return (
     <header className="header-container">
+=======
+
+  return (
+    <header className="header-container">
+      <div className="left-section">
+        <div className="nav-link">
+          <button onClick={handleHomeButtonClick}><img src="home.png" style={{ width: '50px', height: '50px' }} alt="Home"></img><div className='image-info'>Home</div></button>
+        </div>
+        <div className="nav-link">
+          <button onClick={handleAboutButtonClick}><img src="about.png" style={{ width: '50px', height: '50px' }} alt="About"></img><div className='image-info'>About</div></button>
+        </div>
+      </div>
+>>>>>>> Pal_xps_v1
       <div className="logo-container">
         <div className="brand-name">CourseView</div>
       </div>
       <div className="right-section">
         <div className="nav-link">
+<<<<<<< HEAD
           <button onClick={handleHomeButtonClick}><img src="home.png" style={{ width: '50px', height: '50px' }} alt="Home"></img><div className='image-info'>&#160;Home&#160;</div></button>
         </div>
         <div className="nav-link">
@@ -215,6 +240,11 @@ export function Header() {
           </form>
         </div>
       )}
+=======
+          <button onClick={handleLoginButtonClick}><img src="login_icon.png" style={{ width: '50px', height: '50px' }} alt="Login"></img><div className='image-info'>Login</div></button>
+        </div>
+      </div>
+>>>>>>> Pal_xps_v1
     </header>
   );
 }
