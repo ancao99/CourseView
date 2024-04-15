@@ -33,6 +33,10 @@ export default class ClientAPI {
             case "deleteFeedback":
             case "updateFeedback":
             case "addFeedback":
+<<<<<<< HEAD
+=======
+            case "getFeedbackDetail":
+>>>>>>> Pal_gpc_v1
 
             //review
             case "getComments":

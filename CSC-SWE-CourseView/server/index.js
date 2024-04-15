@@ -135,6 +135,12 @@ app.post("/dummydata", upload.single('picture'), async (req, res) => {
             Feedback.updateFeedback(data.entry, res);
             console.log(data.entry)
             break;
+<<<<<<< HEAD
+=======
+        case "getFeedbackDetail":
+            Feedback.getFeedbackDetail(key, data.entry, res);
+            break;
+>>>>>>> Pal_gpc_v1
 
         //review
         case "getComments":

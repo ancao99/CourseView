@@ -51,18 +51,32 @@ export default class feedback {
     static async addFeedback(inputData, res) {
         try {
             // Extract data from the request body
+<<<<<<< HEAD
             const { userID, role, type,comment,recommend } = inputData;
             
             // Validate input data
             if ( !userID || !role || !type || !comment || !recommend) {
+=======
+            const { userID, name, role, type,comment,recommed } = inputData;
+            console.log(inputData)
+            // Validate input data
+            if ( !userID || !name || !role || !type || !comment || !recommed) {
+>>>>>>> Pal_gpc_v1
                 throw new Error("Missing required fields.");
             }
 
             // Construct the SQL query to insert the comment into the database
+<<<<<<< HEAD
             const insertQuery = `INSERT INTO feedback (userID, role, type,comment,recommend,edit) VALUES (?, ?, ?, ?,?,?)`;
             
             // Execute the SQL query
             db.execute(insertQuery, [ userID, role, type,comment,recommend], (err, data) => {
+=======
+            const insertQuery = `INSERT INTO feedback (userID,name, role, type,comment,recommed) VALUES (?, ?, ?, ?,?, ?)`;
+            
+            // Execute the SQL query
+            db.execute(insertQuery, [ userID,name, role, type,comment,recommed], (err, data) => {
+>>>>>>> Pal_gpc_v1
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
@@ -84,7 +98,11 @@ export default class feedback {
     
             // Execute SQL query to update the school field
             const updateQuery = `UPDATE feedback SET edit = ? WHERE feedbackID = ?`;
+<<<<<<< HEAD
             db.execute(updateQuery, [feedbackID, edit], (err, data) => {
+=======
+            db.execute(updateQuery, [edit,feedbackID], (err, data) => {
+>>>>>>> Pal_gpc_v1
                 if (err) {
                     console.error("Error executing SQL query:", err);
                     return res.status(500).json(err);
@@ -97,5 +115,35 @@ export default class feedback {
             return res.status(500).json("Failed to update feedback's edit. " + error.message);
         }
     }
+<<<<<<< HEAD
     
+=======
+    static getFeedbackDetail(key, inputD, res) {
+        try {
+            const feedbackID = inputD.feedbackID;
+            console.log(feedbackID);
+            if (!feedbackID) {
+                return res.status(400).json("Feedback ID is missing.");
+            }
+
+            // Fetch term details including the term name
+            db.execute(`SELECT feedbackID, edit FROM feedback WHERE feedbackID = ?`, [feedbackID], (err, data) => {
+                if (err) {
+                    return res.status(500).json(err);
+                }
+
+                if (data.length === 0) {
+                    return res.status(404).json("Feedback not found.");
+                }
+
+                const feedbackData = data[0];
+                const encryptedData = MySecurity.encryptedData(MySecurity.getUserToken(key), feedbackData);
+                return res.status(200).json(encryptedData);
+            });
+        } catch (error) {
+            console.error("Error getting feedback detail:", error);
+            return res.status(500).json("Failed to get feedback detail. " + error);
+        }
+    }
+>>>>>>> Pal_gpc_v1
 }

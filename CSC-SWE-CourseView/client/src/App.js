@@ -25,6 +25,11 @@ import { AdminUpdateCourses } from './admin/adminCourses/adminUpdateCourses';
 import { AdminUser } from './admin/adminUser/';
 import { AdminUpdateUser } from './admin/adminUser/adminUpdateUser';
 import { AdminFeedback } from "./admin/adminFeedback";
+<<<<<<< HEAD
+=======
+import { AdminUpdateFeedback } from './admin/adminFeedback/adminUpdateFeedback';
+
+>>>>>>> Pal_gpc_v1
 
 const router = createBrowserRouter([
   {
@@ -92,6 +97,13 @@ const router = createBrowserRouter([
     element: <AdminFeedback />,
   },
   {
+<<<<<<< HEAD
+=======
+    path: "adminUpdateFeedback/:feedbackID",
+    element: <AdminUpdateFeedback />,
+  },
+  {
+>>>>>>> Pal_gpc_v1
     path: "adminUpdateUser/:userID",
     element: <AdminUpdateUser />,
   },

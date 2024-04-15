@@ -210,9 +210,15 @@ export const AdminFeedback = () => {
                                 <td>{feedback.comment}</td>
                                 <td>{feedback.edit}</td>
                                 <td>
+<<<<<<< HEAD
                                     {/* <a class="edit" role="button" href={`adminUpdateCourses/${courses.id}`}>
                                         Edit
                                     </a> */}
+=======
+                                <a className="edit" role="button" href={`adminUpdateFeedback/${feedback.id}`}>
+                                        Edit
+                                    </a>
+>>>>>>> Pal_gpc_v1
                                     <form method="post" action="">
                                         <button class="delete" onClick={(e) => removeFeedback(e, feedback.id)}>
                                             Delete
