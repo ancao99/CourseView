@@ -4,6 +4,22 @@
     "mysql": "^2.18.1"
 =======
     "react-scripts": "^5.0.1"
+<<<<<<< HEAD
+>>>>>>> Pal_xps_v1
+=======
+  },
+  "name": "csc-swe-team11courseview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jest": "^27.5.1"
 >>>>>>> Pal_xps_v1
   }
 }
