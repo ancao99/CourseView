@@ -1,0 +1,204 @@
+#courses_details {
+    padding-top: 100px;
+   
+}
+.sub-header-course-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    background-color: rgba(223, 223, 223, 0.3);
+    padding: 0 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.sub-header-course-detail i {
+    font-size: 24px;
+    color: black;
+}
+
+.sub-header-course-detail button {
+    padding: 6px 20px;
+    cursor: pointer;
+    color: #0046c9;
+    background: transparent;
+    border: 1px solid #0046c9;
+    box-shadow: none;
+    transition: 0.5s ease-in-out;
+}
+
+.sub-header-course-detail button:hover {
+    box-shadow: 20px 5px 0 #90CAF9, -20px -5px 0 #0046c9;
+}
+
+.sub-header-course-detail button:focus {
+    outline: none;
+}
+
+.coursesdetails-container {
+    margin: 40px;
+}
+
+#title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    background-color: rgba(223, 223, 223, 0.3);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.226);
+    /*background: linear-gradient(to left, #F9F6EE, #1b5edb);  Example gradient */
+    border-radius: 20px;  
+}
+
+.coursesdetails-container h2 {
+    color: black;
+    /*color: var(--bs-secondary-color) !important;
+    color: #F9F6EE;*/
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #222;
+    font-family: Poppins;
+    font-size: 36px
+}
+
+
+.coursesdetails-container p {
+    color: var(--bs-secondary-color) !important;
+}
+
+.main-review-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.student-review {
+    width: 65%;
+    padding: 0 50px 0 10px;
+}
+
+.course-description {
+    width: 35%;
+    height: 500px;
+    /*background-color: rgba(223, 223, 223, 0.3);*/
+    /*box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.161);*/
+    border-radius: 20px;
+    padding: 40px;
+
+    border: 1px solid;
+    border-color: rgba(223, 223, 223, 0.402);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.student-review .container {
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: rgba(223, 223, 223, 0.402);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.161);
+}
+
+.student-review .comment-section {
+    height: auto;
+}
+
+.student-review .date {
+    font-size: 11px
+}
+
+.student-review .comment-text {
+    font-size: 14px
+}
+
+.student-review .fs-12 {
+    font-size: 12px
+}
+
+.student-review .shadow-none {
+    box-shadow: none
+}
+
+.student-review .cursor:hover {
+    color: blue
+}
+
+.student-review img {
+    margin-right: 20px;
+}
+
+.top-user-info {
+    justify-content: space-between;
+}
+
+.updateComment textarea {
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.edit-comment-section {
+    margin: 100px auto;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.edit-comment-section button {
+    display: inline-block;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.edit-comment-section button[name="cancelEditProduct"] {
+    background-color: #dc3545;
+}
+
+.delete-icon-button {
+    background-color: white;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.delete-icon-button:focus {
+    outline: none;
+    /* Remove focus outline */
+}
+
+.action-button {
+    display: flex;
+}
+
+.student-review .no-review {
+    width: 100%;
+    height: 465px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-review .no-review h4 {
+    color: var(--bs-secondary-color);
+}
+
+.colorUserNameGreen {
+    color: #4CAF50;
+}
+
+.colorUserNameBlue {
+    color: #007bff;}
