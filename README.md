@@ -1,10 +1,4 @@
 # CourseView
-## Team name
-### Taoffek Adnyanju
-### Will Huynh
-### Aaron Rollings 
-### Kush Darji
-### Dat Huynh
 ### An Cao 
 
 # Getting Started with Create React App
