@@ -6,7 +6,7 @@ const dbConfig = {
      
     host: "127.0.0.1",
     user: "root",
-    password: "Hoangminh2345",
+    password: "pass",
     database: "courseview"
 
 // host: "127.0.0.1",
